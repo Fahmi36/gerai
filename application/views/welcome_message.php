@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div id="mapsnya" style="height:400px;margin-bottom:20px;background: #FFF;padding: 10px;border:solid 1px #DDD"></div>
 </div>
 
-</body>
+</body><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
 <script>
 	$(document).ready(function () {
