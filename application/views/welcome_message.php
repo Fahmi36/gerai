@@ -124,7 +124,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					marker = new google.maps.Marker({
 						position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
-						map: map
+						map: map,
+						icon:'https://tehmanisjumboindonesia.com/wp-content/uploads/2022/04/profilsusu.png'
 					});
 					
 					google.maps.event.addListener(marker, 'click', (function(marker, i) {
