@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         fillOpacity: 0.1,
         map: map,
         center: lat,lng,
-        radius: 1500 // in meters
+        radius: 1400 // in meters
     };
     cityCircle = new google.maps.Circle(sunCircle);
     cityCircle.bindTo('center', marker, 'position');
@@ -206,6 +206,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             placeMarker(location.latLng);
             setGeoCoder(location.latLng);
             circle(location.latLng.lat(), location.latLng.lng());
+        });
+        $.ajax({
+			type: "get",
+			url: "/getDataMitra",
+			dataType: "json",
+			success: function (response) {
+			    var jarak = [];
+			    var nama = [];
+				for (let i = 0; i < response.data.length; i++) {
+        ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng));
+            if(ukur <= 1400){
+                alert('Ada gerai dalam radius anda')
+            }else{
+                jarak.push(ukur);
+                nama.push(response.data[i].nama);
+            }
+				}
+			}
         });
     }
     
