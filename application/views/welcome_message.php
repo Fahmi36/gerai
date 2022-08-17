@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 <script>
     var view = $("#tampilkan"); // Untuk mengambil id tampilkan 
-    var geocoder;
+    var geocoder = new google.maps.Geocoder();
     var map;
     var marker;
     var contentString;
