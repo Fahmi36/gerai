@@ -27,6 +27,16 @@ class Welcome extends CI_Controller {
 		$this->db->select('koordinat','nama_pemilik');
 		$this->db->from('mitra');
 		$query = $this->db->get();
-		echo json_encode(['code'=>200,'data'=>$query->result()]);
+		$data = [];
+		foreach ($query as $key) {
+			$exp = explode(',',$key->koordinat);
+			$data[] = [
+				'nama'=>$key->nama_pemilik,
+				'koordinat'=>$key->nama_pemilik,
+				'lat'=>$exp[0],
+				'lng'=>$exp[1],
+			];
+		}
+		echo json_encode(['code'=>200,'data'=>$data]);
 	}
 }
