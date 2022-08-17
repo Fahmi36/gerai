@@ -115,6 +115,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         };
         
         map = new google.maps.Map(document.getElementById('mapsnya'), mapOptions),
+		$.ajax({
+			type: "get",
+			url: "/getDataMitra",
+			dataType: "json",
+			success: function (response) {
+				for (let i = 0; i < response.data.length; i++) {
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(response.data.koordinat),
+						map: map
+					});
+					
+					google.maps.event.addListener(marker, 'click', (function(marker, i) {
+						return function() {
+						infowindow.setContent(response.data.nama_pemilik);
+						infowindow.open(map, marker);
+						}
+					})(marker, i));
+				}
+			}
+		});
         google.maps.event.addListener(map, "click", function (location) { 
             setLatLong(location.latLng.lat(), location.latLng.lng());
             placeMarker(location.latLng);

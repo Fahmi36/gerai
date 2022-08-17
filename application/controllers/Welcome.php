@@ -22,4 +22,11 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+	public function getMitra()
+	{
+		$this->db->select('koordinat','nama_pemilik');
+		$this->db->from('mitra');
+		$query = $this->db->get();
+		echo json_encode(['code'=>200,'data'=>$query]);
+	}
 }
