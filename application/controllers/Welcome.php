@@ -28,11 +28,11 @@ class Welcome extends CI_Controller {
 		$this->db->from('mitra');
 		$query = $this->db->get();
 		$data = [];
-		foreach ($query as $key) {
+		foreach ($query->result as $key) {
 			$exp = explode(',',$key->koordinat);
 			$data[] = [
 				'nama'=>$key->nama_pemilik,
-				'koordinat'=>$key->nama_pemilik,
+				'koordinat'=>$key->koordinat,
 				'lat'=>floatval($exp[0]),
 				'lng'=>($exp[1]),
 			];
