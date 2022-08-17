@@ -121,14 +121,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			dataType: "json",
 			success: function (response) {
 				for (let i = 0; i < response.data.length; i++) {
+					
 					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(response.data.koordinat),
+						position: new google.maps.LatLng(response.data[i].koordinat.replace(/[ ]+/g,',')),
 						map: map
 					});
 					
 					google.maps.event.addListener(marker, 'click', (function(marker, i) {
 						return function() {
-						infowindow.setContent(response.data.nama_pemilik);
+						infowindow.setContent(response.data[i].nama_pemilik);
 						infowindow.open(map, marker);
 						}
 					})(marker, i));
