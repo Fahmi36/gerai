@@ -245,12 +245,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $('#long').val(position.coords.longitude);
         $('#coordinate').val(position.coords.latitude+','+position.coords.longitude);
         var address = position.coords.latitude+','+position.coords.longitude;
-        var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         geocoder.geocode({
-            'address': address
+			'address': address
         }, function(results, status) {
+			var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
             if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+                map.setCenter(latlng);
                 if (marker) {
                     marker.setMap(null);
                     if (infowindow) infowindow.close();
