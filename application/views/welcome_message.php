@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var view = $("#tampilkan"); // Untuk mengambil id tampilkan 
     var geocoder = new google.maps.Geocoder();
     var map;
-    var marker;
+    var marker,i,markermitra;
     var contentString;
     var po = [];
     var infowindow = new google.maps.InfoWindow({
@@ -115,6 +115,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         };
         
         map = new google.maps.Map(document.getElementById('mapsnya'), mapOptions),
+        google.maps.event.addListener(map, "click", function (location) { 
+            setLatLong(location.latLng.lat(), location.latLng.lng());
+            placeMarker(location.latLng);
+            setGeoCoder(location.latLng);
+            circle(location.latLng.lat(), location.latLng.lng());
+        });
 		$.ajax({
 			type: "get",
 			url: "/getDataMitra",
@@ -122,36 +128,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			success: function (response) {
 				for (let i = 0; i < response.data.length; i++) {
 					
-					marker = new google.maps.Marker({
+					markermitra = new google.maps.Marker({
 						position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
 						map: map,
-						icon:'https://tehmanisjumboindonesia.com/wp-content/uploads/2022/04/profilsusu.png'
+						icon:'https://ik.imagekit.io/bjw2q837sq/public/output-onlinepngtools__1__MgJqxbkj3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660753951517'
 					});
 					
-					google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
 						return function() {
 						infowindow.setContent(response.data[i].nama);
-						infowindow.open(map, marker);
+						infowindow.open(map, markermitra);
 						}
-					})(marker, i));
+					})(markermitra, i));
 				}
 			}
 		});
-        google.maps.event.addListener(map, "click", function (location) { 
-            setLatLong(location.latLng.lat(), location.latLng.lng());
-            placeMarker(location.latLng);
-            setGeoCoder(location.latLng);
-        });
-        function placeMarker(location) {
-            if ( marker ) {
-                marker.setPosition(location);
-            } else {
-                marker = new google.maps.Marker({
-                    position: location,
-                    map: map
-                });
-            }
-        }
+        
         var input = document.getElementById('search_address');//Untuk memanggil id search autocomplete
         
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -186,15 +178,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             var addrnya = place.formatted_address;
             marker.setVisible(true);
             setLatLong(place.geometry.location.lat(), place.geometry.location.lng(),namanya,addrnya);
+            circle(place.geometry.location.lat(), place.geometry.location.lng());
         });
         
         google.maps.event.addListener(marker, "dragend", function (e) {
             setLatLong(marker.getPosition().lat(), marker.getPosition().lng());
             placeMarker(marker.getPosition());
             setGeoCoder(marker.getPosition());
+            circle(marker.getPosition().lat(), marker.getPosition().lng());
+        });
+    }
+    function circle(lat,lng){
+        var sunCircle = {
+        strokeColor: "#c3fc49",
+        strokeOpacity: 0.1,
+        strokeWeight: 1,
+        fillColor: "#c3fc49",
+        fillOpacity: 0.1,
+        map: map,
+        center: lat,lng,
+        radius: 1500 // in meters
+    };
+    cityCircle = new google.maps.Circle(sunCircle);
+    cityCircle.bindTo('center', marker, 'position');
+    google.maps.event.addListener(cityCircle, 'click', function(location) {
+            setLatLong(location.latLng.lat(), location.latLng.lng());
+            placeMarker(location.latLng);
+            setGeoCoder(location.latLng);
+            circle(location.latLng.lat(), location.latLng.lng());
         });
     }
     
+        function placeMarker(location) {
+            if ( marker ) {
+                marker.setPosition(location);
+            } else {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        }
     //fungsinya untuk mengambil id dari lat 
     function setLatLong(lat, long,nama,addr) {
         $('#lat').val(lat);
@@ -270,6 +294,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $('#lat').val(a.latLng.lat());
                     $('#long').val(a.latLng.lng());
                     $('#coordinate').val(a.latLng.lat()+','+a.latLng.lng());
+                    circle(a.latLng.lat(), a.latLng.lng());
                 });
                 google.maps.event.addListener(marker, 'center_changed', function() {
                     if (results[0].formatted_address) {
