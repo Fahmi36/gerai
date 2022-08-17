@@ -123,13 +123,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				for (let i = 0; i < response.data.length; i++) {
 					
 					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(response.data[i].koordinat.replace(/[ ]+/g,',')),
+						position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
 						map: map
 					});
 					
 					google.maps.event.addListener(marker, 'click', (function(marker, i) {
 						return function() {
-						infowindow.setContent(response.data[i].nama_pemilik);
+						infowindow.setContent(response.data[i].nama);
 						infowindow.open(map, marker);
 						}
 					})(marker, i));

@@ -33,8 +33,8 @@ class Welcome extends CI_Controller {
 			$data[] = [
 				'nama'=>$key->nama_pemilik,
 				'koordinat'=>$key->nama_pemilik,
-				'lat'=>$exp[0],
-				'lng'=>$exp[1],
+				'lat'=>floatval($exp[0]),
+				'lng'=>($exp[1]),
 			];
 		}
 		echo json_encode(['code'=>200,'data'=>$data]);
