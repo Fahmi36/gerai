@@ -249,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             'address': address
         }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(latlng);
+                map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
                 if (marker) {
                     marker.setMap(null);
                     if (infowindow) infowindow.close();
