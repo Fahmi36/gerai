@@ -1,0 +1,80 @@
+html,body{
+	background-color: #f6f7fb;
+	font-family: 'Muli', sans-serif;
+}
+#mapsnya{
+	height:400px;
+	background: #FFF;padding: 10px;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 12%);
+	/*border:solid 1px #DDD;*/
+}
+.fs-13{
+	font-size: 13px;
+}
+.fs-14{
+	font-size: 14px;
+}
+.fs-15{
+	font-size: 15px;
+}
+.container{
+    max-width: 1500px !important;
+}
+#search_address{
+	border-left: none;
+}
+.alert-warning{
+	/*background-color: #f9d585;*/
+	/*color: #1e1810;*/
+}
+.color-yellow{
+	color: #f9d585;
+}
+.card-mitra{
+	border-radius: 5px;
+	box-shadow: 0 1px 20px 0 rgb(69 90 100 / 8%);
+	border: none;
+	margin-bottom: 10px;
+}
+.card-information{
+	box-shadow: 0 5px 5px rgb(0 0 0 / 12%);
+	border-radius: 5px;
+	border: none;
+	background: #fff;
+}
+.card-title{
+	letter-spacing: 1px;
+}
+.card-body p{
+	opacity: 0.6;
+}
+.card-body button{
+	font-size: 15px;
+}
+form {
+  	margin: 10px auto;
+  	padding: 15px;
+  	/*height: 210px;*/
+  	position: relative;
+   	margin-bottom: 35px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  	padding: 10px;
+  	display: block;
+  	margin-bottom: 15px
+}
+
+form input[type="submit"] {
+  	position: absolute;
+  	left: 50%;
+  	bottom: -6px;
+  	margin-left: -93px;
+}
+.form-daftar {
+  	display: none
+}
+.btn-submit{
+	margin-left: -75px !important;
+}

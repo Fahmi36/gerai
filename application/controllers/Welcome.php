@@ -20,7 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data['title'] = 'Halaman Tambah Gerai - Teh Manis Jumbo';
+        $data['link_view'] = 'gerai';
+		$this->load->view('utama',$data);
 	}
 	public function getMitra()
 	{
