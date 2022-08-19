@@ -60,7 +60,7 @@
                            class="text-danger">*</span>
                         </label>
                         <input type="text" required="" class="form-control" id="alamat" name="alamat" placeholder="-">
-                        <input type="hidden" required="" class="form-control" id="coordinate" name="koordinat" placeholder="-">
+                        <input type="hidden" class="form-control" id="coordinate" name="koordinat" placeholder="-">
                         <label for="foto_lokasi" class="block">Foto Lokasi <span
                            class="text-danger">*</span>
                         </label>
@@ -77,7 +77,6 @@
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script>
       $(document).ready(function () {
          getLocation();

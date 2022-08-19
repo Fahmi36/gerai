@@ -41,7 +41,7 @@
       <label for="foto_lokasi" class="block">Foto Lokasi <span
       class="text-danger">*</span>
       </label>
-      <input type="file" required="" class="form-control" id="foto_lokasi" name="foto_lokasi" placeholder="-">
+      <input type="file" class="form-control" id="foto_lokasi" name="foto_lokasi" placeholder="-">
       <input type="hidden" value="<?=@$data->foto_toko?>" name="old_foto">
       <div class="d-grid gap-2 col-6 mx-auto">
       <button class="cant-submit btn btn-warning rounded-5 mb-3 mt-4 btn-block" type="submit">Edit</button>
