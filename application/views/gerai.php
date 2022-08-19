@@ -13,7 +13,7 @@
             <div class="alert alert-info mt-3 fs-14" role="alert">
                Mesin Pencari Mitra Jumbo di sekitar lokasi Anda<br>
                Mesin ini dapat memberikan Anda rekomendasi apakah lokasi yang ingin Anda ajukan merupakan lokasi terbaik untuk menjadi Mitra Jumbo.<br>
-               Pengajuan Mitra Jumbo hanya akan diterima apabila pada radius <strong>1.5 km</strong> dari lokasi Anda tidak ada Mitra Jumbo lainnya.    
+               Pengajuan Mitra Jumbo hanya akan diterima apabila pada radius <strong>1.5 km</strong> dari lokasi Anda atau sesuai dengan aplikasi yang tersedia dan tidak ada Mitra Jumbo lainnya.    
             </div>
             <div class="input-group ">
                <span class="input-group-text bg-light"><i class="fa fa-map-marker text-danger fs-3"></i></span>
@@ -136,7 +136,7 @@
                            });
                            setInterval(() => {
                               window.location.reload();
-                           }, 10000);
+                           }, 3000);
                         }else{
                            Swal.fire({
                               icon: 'error',
@@ -188,7 +188,7 @@
                markermitra = new google.maps.Marker({
                   position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
                   map: map,
-                  icon:'https://ik.imagekit.io/bjw2q837sq/public/output-onlinepngtools__1__MgJqxbkj3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660753951517'
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
                });
                
                google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
@@ -214,6 +214,7 @@
          anchorPoint: new google.maps.Point(0, -29)
       });
         
+      addYourLocationButton(map, marker);
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             //infowindow.close();
             marker.setVisible(true);
@@ -245,38 +246,98 @@
          circle(marker.getPosition().lat(), marker.getPosition().lng());
       });
      }
+     
+     function addYourLocationButton (map, marker) 
+      {
+         var controlDiv = document.createElement('div');
+         
+         var firstChild = document.createElement('button');
+         firstChild.style.backgroundColor = '#fff';
+         firstChild.style.border = 'none';
+         firstChild.style.outline = 'none';
+         firstChild.style.width = '40px';
+         firstChild.style.height = '40px';
+         firstChild.style.borderRadius = '2px';
+         firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+         firstChild.style.cursor = 'pointer';
+         firstChild.style.marginRight = '10px';
+         firstChild.style.padding = '0';
+         firstChild.title = 'Your Location';
+         firstChild.type = 'button';
+         controlDiv.appendChild(firstChild);
+         
+         var secondChild = document.createElement('div');
+         secondChild.style.margin = '5px auto';
+         secondChild.style.width = '18px';
+         secondChild.style.height = '18px';
+         secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-2x.png)';
+         secondChild.style.backgroundSize = '180px 18px';
+         secondChild.style.backgroundPosition = '0 0';
+         secondChild.style.backgroundRepeat = 'no-repeat';
+         firstChild.appendChild(secondChild);
+         
+         google.maps.event.addListener(map, 'center_changed', function () {
+            secondChild.style['background-position'] = '0 0';
+         });
+         
+         firstChild.addEventListener('click', function () {
+            var imgX = '0',
+            animationInterval = setInterval(function () {
+               imgX = imgX === '-18' ? '0' : '-18';
+               secondChild.style['background-position'] = imgX+'px 0';
+            }, 500);
+            
+            if(navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(function(position) {
+                  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  setLatLong(position.coords.latitude, position.coords.longitude);
+                  placeMarker(latlng);
+                  setGeoCoder(latlng);
+                  circle(position.coords.latitude, position.coords.longitude);
+                  map.setCenter(latlng);
+                  clearInterval(animationInterval);
+                  secondChild.style['background-position'] = '-144px 0';
+               });
+            } else {
+               clearInterval(animationInterval);
+               secondChild.style['background-position'] = '0 0';
+            }
+         });
+         
+         controlDiv.index = 1;
+         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+      }
      function circle(lat,lng){
         var sunCircle = {
-           strokeColor: "#c3fc49",
-           strokeOpacity: 0.1,
-           strokeWeight: 1,
-           fillColor: "#c3fc49",
-           fillOpacity: 0.1,
-           map: map,
-           center: lat,lng,
-        radius: 1400 // in meters
-     };
-     cityCircle = new google.maps.Circle(sunCircle);
-     cityCircle.bindTo('center', marker, 'position');
-     google.maps.event.addListener(cityCircle, 'click', function(location) {
-      setLatLong(location.latLng.lat(), location.latLng.lng());
-      placeMarker(location.latLng);
-      setGeoCoder(location.latLng);
-      circle(location.latLng.lat(), location.latLng.lng());
-   });
+            strokeColor: "#c3fc49",
+            strokeOpacity: 0.1,
+            strokeWeight: 1,
+            fillColor: "#c3fc49",
+            fillOpacity: 0.1,
+            map: map,
+            center: lat,lng,
+            radius: 1400 // in meters
+         };
+      cityCircle = new google.maps.Circle(sunCircle);
+      cityCircle.bindTo('center', marker, 'position');
+      google.maps.event.addListener(cityCircle, 'click', function(location) {
+         setLatLong(location.latLng.lat(), location.latLng.lng());
+         placeMarker(location.latLng);
+         setGeoCoder(location.latLng);
+         circle(location.latLng.lat(), location.latLng.lng());
+      });
      $.ajax({
       type: "get",
       url: "/getDataMitra",
       dataType: "json",
       success: function (response) {
       var jarak = [];
-      var nama = [];
       var htmlmitra = '';
       for (let i = 0; i < response.data.length; i++) {
          ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
          if(ukur <= 1.4){
             jarak.push(ukur);
-            htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label> <h6 class="fs-14 fw-bold mb-2>'+response.data[i].nama+'</h6><i class="fa fa-map-marker text-danger"></i> <p class="class="fs-13 mb-2"">'+response.data[i].alamat+'</p><p class="fs-13 mb-0 text-success">Sudah Buka</p></div></div>';
+            htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label><h6 class="fs-14 fw-bold mb-2"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].nama+'</h6><p class="class="fs-13 mb-2"">'+response.data[i].alamat+'</p><p class="fs-13 mb-0 text-success">Sudah Buka</p></div></div>';
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
          }
       }
@@ -364,7 +425,7 @@ function showPosition(position) {
 }, function(results, status) {
    var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
    if (status == google.maps.GeocoderStatus.OK) {
-    map.setCenter(latlng);
+    map.setCenter(results[0].geometry.location);
     if (marker) {
      marker.setMap(null);
      if (infowindow) infowindow.close();
