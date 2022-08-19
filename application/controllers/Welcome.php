@@ -44,7 +44,7 @@ class Welcome extends CI_Controller {
 		foreach ($query->result() as $key) {
 			$exp = explode(',',$key->koordinat);
 			$data[] = [
-				'nama'=>$key->nama_pemilik,
+				'nama'=>ucwords($key->nama_pemilik),
 				'koordinat'=>$key->koordinat,
 				'lat'=>floatval(@$exp[0]),
 				'lng'=>floatval(@$exp[1]),
@@ -161,7 +161,7 @@ class Welcome extends CI_Controller {
 				if($cek->num_rows() > 0){
 					$this->db->trans_commit();
 					$this->db->update('mitra',array(
-						'status'=>1,
+						'status'=>$this->input->post('status'),
 						'updated_at'=>date('Y-m-d H:i:s'),
 					),array('id'=>$this->input->post('id')));
 					$respone['code'] = 200;
@@ -216,10 +216,20 @@ class Welcome extends CI_Controller {
 		$no = @$_POST['start'];
 		foreach ($list->result() as $field) {
 			$no++;
+			
 			if ($field->status == 1) {
-				$btn = "<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+				$status = 'Mitra aktif';
+			}else if($field->status == 2){
+				$status = 'Mitra non-aktif';
+			}else if($field->status == 3){
+				$status = 'Mitra di tolak';
 			}else{
-				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+				$status = 'Mitra belum verifikasi';
+			}
+			if ($field->status == 1) {
+				$btn = "<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>&nbsp<a href='javascript:void(0);' onclick='nonaktifMitra(".$field->id.")' class='btn btn-sm btn-primary'>Non Aktif</a>";
+			}else{
+				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href='javascript:void(0);' onclick='tolakMitra(".$field->id.")' class='btn btn-sm btn-danger'>Tolak</a>&nbsp<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
 			}
 			$row = array();
 			$row[] = $no;
@@ -228,6 +238,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
+			$row[] = $status;
 			$row[] = $btn;
 			$data[] = $row;
 		}
@@ -254,14 +265,14 @@ class Welcome extends CI_Controller {
 				if ($i === 0) {
 					$this->db->like($itemsearch, strtolower($_POST['search']['value']),'BOTH');
 					if ($uri=='selesai') {
-						$this->db->where('status',1);
+						$this->db->where_in('status',[1,2]);
 					}else{
 						$this->db->where('status',0);
 					}
 				}else{
 					$this->db->or_like($itemsearch, strtolower($_POST['search']['value']),'BOTH');
 					if ($uri=='selesai') {
-						$this->db->where('status',1);
+						$this->db->where_in('status',[1,2]);
 					}else{
 						$this->db->where('status',0);
 					}
