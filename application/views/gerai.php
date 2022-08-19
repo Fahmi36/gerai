@@ -358,7 +358,6 @@
 function showPosition(position) {
   $('#lat').val(position.coords.latitude);
   $('#long').val(position.coords.longitude);
-   circle(position.coords.latitude, position.coords.longitude);
   $('#coordinate').val(position.coords.latitude+','+position.coords.longitude);
   var address = position.coords.latitude+','+position.coords.longitude;
   geocoder.geocode({
@@ -377,6 +376,7 @@ function showPosition(position) {
      position: latlng
   });
 
+  circle(position.coords.latitude, position.coords.longitude);
   $('#alamat').val(results[0].formatted_address);
   var fx = results[0].formatted_address.split(',');
   $('hides').show();
