@@ -23,7 +23,6 @@
          class="text-danger">*</span>
       </label>
       <input type="text" required="" class="form-control" id="no_hp" value="<?=@$data->nohp?>" name="no_hp" placeholder="-">
-      
       <div class="input-group ">
          <span class="input-group-text bg-light"><i class="fa fa-map-marker text-danger fs-3"></i></span>
          <div class="form-floating">
