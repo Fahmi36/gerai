@@ -213,7 +213,9 @@
             if(navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(function(position) {
                   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                  setLatLong(position.coords.latitude, position.coords.longitude);
                   placeMarker(latlng);
+                  setGeoCoder(latlng);
                   map.setCenter(latlng);
                   clearInterval(animationInterval);
                   secondChild.style['background-position'] = '-144px 0';
