@@ -114,7 +114,7 @@
       //Untuk menampilkan tampilan awal maps
       function initialize() {
          geocoder = new google.maps.Geocoder();
-         var latlng = new google.maps.LatLng('<?=@$data->koordinat?>');//untuk setting map di awal 
+         var latlng = new google.maps.LatLng(<?=@$data->koordinat?>);//untuk setting map di awal 
          var mapOptions = {
             center: latlng,
             zoom: 15,
