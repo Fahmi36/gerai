@@ -76,7 +76,7 @@
       </div>
    </div>
 </div>
-<div class="modal fade" id="#modalImages" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modalImages" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
          <div class="modal-body">
