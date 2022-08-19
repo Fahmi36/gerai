@@ -268,7 +268,7 @@
          $('.success-mitra').addClass('d-none');
          $('.mitra').removeClass('d-none');
          htmlmitra +='<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+Math.round((((ukur /1000) + Number.EPSILON) * 100) / 100)+' km</label> <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].nama+'</h6> <p class="fs-13 mb-0">Sudah Buka</p></div></div>';
-         $('.alertmitra"></div>').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
+         $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
        }else{
          $('.success-mitra').removeClass('d-none');
          $('.form-mitra').removeClass('d-none');
