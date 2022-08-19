@@ -13,7 +13,7 @@
             <div class="alert alert-info mt-3 fs-14" role="alert">
                Mesin Pencari Mitra Jumbo di sekitar lokasi Anda<br>
                Mesin ini dapat memberikan Anda rekomendasi apakah lokasi yang ingin Anda ajukan merupakan lokasi terbaik untuk menjadi Mitra Jumbo.<br>
-               Pengajuan Mitra Jumbo hanya akan diterima apabila pada radius <strong>1.5 km</strong> dari lokasi Anda tidak ada Mitra Jumbo lainnya.    
+               Pengajuan Mitra Jumbo hanya akan diterima apabila pada radius <strong>1.5 km</strong> dari lokasi Anda atau sesuai dengan aplikasi yang tersedia dan tidak ada Mitra Jumbo lainnya.    
             </div>
             <div class="input-group ">
                <span class="input-group-text bg-light"><i class="fa fa-map-marker text-danger fs-3"></i></span>
@@ -215,6 +215,7 @@
          anchorPoint: new google.maps.Point(0, -29)
       });
         
+      addYourLocationButton(map, marker);
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             //infowindow.close();
             marker.setVisible(true);
