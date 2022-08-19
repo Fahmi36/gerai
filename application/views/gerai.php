@@ -236,95 +236,96 @@
          </div>
       </div>
    </div>
-   <footer class="footer-section">
+</div>
+<footer class="footer-section">
+   <div class="container">
+      <div class="footer-cta pt-5 pb-5">
+         <div class="row">
+            <div class="col-xl-5 col-md-5 mb-30">
+               <div class="single-cta mb-3 d-flex">
+                  <i class="fa fa-map-marker"></i>
+                  <div class="cta-text">
+                     <h4>Temukan kami</h4>
+                     <span>Jl. Raya Bojong Gede No.32, Bojonggede, Kecamatan Bojonggede, Kabupaten Bogor, Jawa Barat 16320</span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-3 col-md-3 mb-30">
+               <div class="single-cta mb-3">
+                  <i class="fa fa-phone"></i>
+                  <div class="cta-text">
+                     <h4>Hubungi kami</h4>
+                     <span>0813-8549-7965</span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-4 col-md-4 mb-30">
+               <div class="single-cta mb-3">
+                  <i class="fa fa-envelope-open"></i>
+                  <div class="cta-text">
+                     <h4>Email kami</h4>
+                     <span>tehmanisjumbo1@gmail.com</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="footer-content pt-5 pb-5">
+         <div class="row">
+            <div class="col-xl-4 col-lg-4 mb-50">
+               <div class="footer-widget">
+                  <div class="footer-logo">
+                     <a href="index.html"><img src="https://gerai.tehmanisjumboindonesia.com/assets/img/logo.png" class="img-fluid" alt="logo"></a>
+                  </div>
+                  <div class="footer-text">
+                     <p>Teh Manis Jumbo merupakan unit usaha yang menyajikan produk minuman dengan konsep ready to drink dalam kemasan dengan menu unggulan utama yaitu teh asli Indonesia.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+               <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                     <h3>Halaman</h3>
+                  </div>
+                  <ul>
+                     <li><a href="https://tehmanisjumboindonesia.com/">Home</a></li>
+                     <li><a href="#">Daftar Mitra</a></li>
+                     <li><a href="https://tehmanisjumboindonesia.com/menu/">Menu</a></li>
+                     <li><a href="https://tehmanisjumboindonesia.com/tentang-kami/">Tentang Kami</a></li>
+                     <li><a href="https://tehmanisjumboindonesia.com/kemitraan/">Kemitraan</a></li>
+                     <li><a href="https://tehmanisjumboindonesia.com/kontak/">Kontak</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+               <div class="footer-widget">
+                  <div class="footer-widget-heading">
+                     <h3>Sosial Media</h3>
+                  </div>
+                  <div class="footer-social-icon">
+                     <a href="https://www.instagram.com/tehmanisjumboindonesia/" target="_blank"><img src="<?=base_url('assets/img/instagram.png');?>" style="width: 35px;"></a>
+                     <a href="https://www.youtube.com/channel/UCpZ56bvi8SFawiXwC9NhfAA" target="_blank"><img src="<?=base_url('assets/img/youtube.png');?>" style="width: 35px;"></a>
+                     <a href="https://www.tiktok.com/@tehmanisjumboid" target="_blank"><img src="<?=base_url('assets/img/tik-tok.png');?>" style="width: 35px;"></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="copyright-area">
       <div class="container">
-         <div class="footer-cta pt-5 pb-5">
-            <div class="row">
-               <div class="col-xl-5 col-md-5 mb-30">
-                  <div class="single-cta mb-3 d-flex">
-                     <i class="fa fa-map-marker"></i>
-                     <div class="cta-text">
-                        <h4>Temukan kami</h4>
-                        <span>Jl. Raya Bojong Gede No.32, Bojonggede, Kecamatan Bojonggede, Kabupaten Bogor, Jawa Barat 16320</span>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-md-3 mb-30">
-                  <div class="single-cta mb-3">
-                     <i class="fa fa-phone"></i>
-                     <div class="cta-text">
-                        <h4>Hubungi kami</h4>
-                        <span>0813-8549-7965</span>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-4 col-md-4 mb-30">
-                  <div class="single-cta mb-3">
-                     <i class="fa fa-envelope-open"></i>
-                     <div class="cta-text">
-                        <h4>Email kami</h4>
-                        <span>tehmanisjumbo1@gmail.com</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="footer-content pt-5 pb-5">
-            <div class="row">
-               <div class="col-xl-4 col-lg-4 mb-50">
-                  <div class="footer-widget">
-                     <div class="footer-logo">
-                        <a href="index.html"><img src="https://gerai.tehmanisjumboindonesia.com/assets/img/logo.png" class="img-fluid" alt="logo"></a>
-                     </div>
-                     <div class="footer-text">
-                        <p>Teh Manis Jumbo merupakan unit usaha yang menyajikan produk minuman dengan konsep ready to drink dalam kemasan dengan menu unggulan utama yaitu teh asli Indonesia.</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                  <div class="footer-widget">
-                     <div class="footer-widget-heading">
-                        <h3>Halaman</h3>
-                     </div>
-                     <ul>
-                        <li><a href="https://tehmanisjumboindonesia.com/">Home</a></li>
-                        <li><a href="#">Daftar Mitra</a></li>
-                        <li><a href="https://tehmanisjumboindonesia.com/menu/">Menu</a></li>
-                        <li><a href="https://tehmanisjumboindonesia.com/tentang-kami/">Tentang Kami</a></li>
-                        <li><a href="https://tehmanisjumboindonesia.com/kemitraan/">Kemitraan</a></li>
-                        <li><a href="https://tehmanisjumboindonesia.com/kontak/">Kontak</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                  <div class="footer-widget">
-                     <div class="footer-widget-heading">
-                        <h3>Sosial Media</h3>
-                     </div>
-                     <div class="footer-social-icon">
-                        <a href="https://www.instagram.com/tehmanisjumboindonesia/" target="_blank"><img src="<?=base_url('assets/img/instagram.png');?>" style="width: 35px;"></a>
-                        <a href="https://www.youtube.com/channel/UCpZ56bvi8SFawiXwC9NhfAA" target="_blank"><img src="<?=base_url('assets/img/youtube.png');?>" style="width: 35px;"></a>
-                        <a href="https://www.tiktok.com/@tehmanisjumboid" target="_blank"><img src="<?=base_url('assets/img/tik-tok.png');?>" style="width: 35px;"></a>
-                     </div>
-                  </div>
+         <div class="row">
+            <div class="col-xl-12 col-lg-12 text-center text-lg-left">
+               <div class="copyright-text">
+                  <p>Copyright &copy; 2022 All Right Reserved <a href="#">Teh Manis Jumbo</a></p>
                </div>
             </div>
          </div>
       </div>
-      <div class="copyright-area">
-         <div class="container">
-            <div class="row">
-               <div class="col-xl-12 col-lg-12 text-center text-lg-left">
-                  <div class="copyright-text">
-                     <p>Copyright &copy; 2022 All Right Reserved <a href="#">Teh Manis Jumbo</a></p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </footer>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
+   </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
    <script>
       $(document).ready(function () {
          getLocation();
