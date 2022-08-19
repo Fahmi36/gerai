@@ -76,11 +76,27 @@
       </div>
    </div>
 </div>
+<div class="modal fade" id="modalImages" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-body">
+            <img src="" class="image-modal">
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
 <script>
    $(document).ready(function() {
       GetdataAdminSelesai();
       GetdataAdminProses();
    });
+   function openModal(image){
+      $('.modalImages').modal('show');
+      $('.imagemodal').attr('src', image);
+   }
    function GetdataAdminSelesai() {
       var URL = '<?=site_url('list_data_mitra/selesai')?>';
       var t = $('.dataTable').DataTable({ 
