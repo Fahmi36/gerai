@@ -95,7 +95,7 @@
    });
    function openModal(image){
       $('.modalImages').modal('show');
-      $('.imagemodal').attr('src', image);
+      $('.image-modal').attr('src', image);
    }
    function GetdataAdminSelesai() {
       var URL = '<?=site_url('list_data_mitra/selesai')?>';
