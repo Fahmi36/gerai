@@ -128,7 +128,14 @@
                      },
                      success:function(data) {
                         if (data.code== 200) {
-                           window.location.reload();
+                           Swal.fire({
+                              icon: 'success',
+                              title: 'Horeee...',
+                              text: data.message,
+                           });
+                           setInterval(() => {
+                              window.location.reload();
+                           }, 10000);
                         }else{
                            Swal.fire({
                               icon: 'error',

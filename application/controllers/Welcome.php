@@ -80,7 +80,7 @@ class Welcome extends CI_Controller {
 					
 					$this->db->trans_commit();
 					$respone['code'] = 200;
-					$respone['message'] = 'success';
+					$respone['message'] = 'Data Anda Sedang Di Review';
 				}
 			}else{
 				$this->db->trans_rollback();
