@@ -358,6 +358,7 @@
 function showPosition(position) {
   $('#lat').val(position.coords.latitude);
   $('#long').val(position.coords.longitude);
+   circle(position.coords.latitude, position.coords.longitude);
   $('#coordinate').val(position.coords.latitude+','+position.coords.longitude);
   var address = position.coords.latitude+','+position.coords.longitude;
   geocoder.geocode({
@@ -387,7 +388,6 @@ function showPosition(position) {
      circle(a.latLng.lat(), a.latLng.lng());
   });
   google.maps.event.addListener(marker, 'center_changed', function() {
-   circle(a.latLng.lat(), a.latLng.lng());
    if (results[0].formatted_address) {
       infowindow.setContent(results[0].formatted_address + "<br>coordinates: " + marker.getPosition());
    }else {
