@@ -68,7 +68,6 @@ class Welcome extends CI_Controller {
 					$respone['code'] = 400;
 					$respone['message'] = 'Toko Anda Sedang Dalam Review';
 				}else{
-					$this->db->trans_commit();
 					$this->db->insert('mitra',array(
 						'nama_pemilik'=>$this->input->post('nama'),
 						'nama_toko'=>$this->input->post('nama_booth'),
@@ -77,7 +76,11 @@ class Welcome extends CI_Controller {
 						'koordinat'=>$this->input->post('koordinat'),
 						'status'=>0,
 						'created_at'=>date('Y-m-d H:i:s'),
-				));
+					));
+					
+					$this->db->trans_commit();
+					$respone['code'] = 200;
+					$respone['message'] = 'success';
 				}
 			}else{
 				$this->db->trans_rollback();
