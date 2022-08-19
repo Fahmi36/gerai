@@ -154,7 +154,7 @@ class Welcome extends CI_Controller {
 			$this->db->trans_start();
 			$this->form_validation->set_rules('id','id','required',array('required' => 'Mohon Isi id'));
 			if($this->form_validation->run()){
-				$cek = $this->db->get_where('mitra',array('nohp'=>$this->input->post('no_hp'),'alamat'=>$this->input->post('alamat')));
+				$cek = $this->db->get_where('mitra',array('id'=>$this->input->post('id')));
 				if($cek->num_rows() > 0){
 					$this->db->update('mitra',array(
 						'status'=>1,
