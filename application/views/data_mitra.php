@@ -34,7 +34,8 @@
                         <th>No</th>
                         <th>Nama Pemohon</th>
                         <th>Nama Booth</th>
-                        <th>Nomor Hendphone</th>
+                        <th>Nomor Telepon</th>
+                        <th>Foto</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
                         <th>Status</th>
@@ -59,7 +60,8 @@
                         <th>No</th>
                         <th>Nama Pemohon</th>
                         <th>Nama Booth</th>
-                        <th>Nomor Hendphone</th>
+                        <th>Nomor Telepon</th>
+                        <th>Foto</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
                         <th>Status</th>
