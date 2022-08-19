@@ -32,30 +32,9 @@
                   <div class="default-mitra text-center m-5 d-none">
                      <img src="<?=base_url('assets/img/logo.png');?>">
                   </div>
-                  <div class="danger-mitra">
-                     <div class="card card-mitra">
-                        <div class="card-body">
-                           <label class="badge text-bg-success" style="float:right;">0.25 km</label>
-                           <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> Jumbo Mampang Prapatan</h6>
-                           <p class="fs-13 mb-0">Sudah Buka</p>
-                        </div>
-                     </div>
-                     <div class="card card-mitra">
-                        <div class="card-body">
-                           <label class="badge text-bg-success" style="float:right;">0.5 km</label>
-                           <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> Jumbo Bangka Raya</h6>
-                           <p class="fs-13 mb-0">Sudah Buka</p>
-                        </div>
-                     </div>
-                     <div class="card card-mitra">
-                        <div class="card-body">
-                           <label class="badge text-bg-success" style="float:right;">0.72 km</label>
-                           <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> Jumbo Abah Gaul</h6>
-                           <p class="fs-13 mb-0">Sudah Buka</p>
-                        </div>
-                     </div>
-                     <div class="alert alert-danger mt-3 fs-14" role="alert">
-                        <strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br>
+                  <div class="danger-mitra mitra">
+                     <div class="alert alert-danger mt-3 fs-14 alertmitra" role="alert">
+                        
                      </div>
                   </div>
                   <div class="success-mitra text-center d-none">
@@ -65,7 +44,7 @@
                         Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami.
                      </p>
                   </div>
-                  <form method="post" id="pengajuan-mitra" action="javascript:void(0);" enctype="multipart/form-data" accept-charset="utf-8" class="d-none">
+                  <form method="post" id="pengajuan-mitra" action="javascript:void(0);" enctype="multipart/form-data" accept-charset="utf-8" class="form-mitra d-none">
                      <div class="form-daftar text-left">
                         <label for="nama" class="block">Nama Pemohon <span
                            class="text-danger">*</span>
@@ -83,6 +62,7 @@
                            class="text-danger">*</span>
                         </label>
                         <input type="text" required="" class="form-control" id="alamat" name="alamat" placeholder="-">
+                        <input type="hidden" required="" class="form-control" id="coordinate" name="koordinat" placeholder="-">
                         <label for="foto_lokasi" class="block">Foto Lokasi <span
                            class="text-danger">*</span>
                         </label>
@@ -99,13 +79,14 @@
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script>
       $(document).ready(function () {
          getLocation();
       });
       $(function () {
          'use strict';
-         $('[type="submit"]').on('click', function (e) {
+         $('.cant-submit').on('click', function (e) {
             if ($(this).hasClass('cant-submit')) {
                $('.success-mitra').addClass('d-none');
                $('.cant-submit').addClass('btn-submit');
@@ -122,6 +103,42 @@
                });
             }
          });
+         $("#pengajuan-mitra").submit(function (event) {
+		var datas = new FormData($(this)[0]);
+		Swal.fire({
+			title: 'Data Sudah Sesuai ?',
+			text: "Jika data sudah sesuai makan tekan tombol ya",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya',
+			cancelButtonText: 'Batal'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: '/masukanDataStore',
+					type: 'POST',
+					dataType: 'json',
+					data : datas,
+					contentType: false,
+					cache: false,
+					processData: false,
+					beforeSend:function() {
+						$("#text-loader").html('Mohon Tunggu');
+						$('#page-loader').fadeIn('slow');
+					},
+					success:function(data) {
+						if (data.code== 200) {
+                     window.location.reload();
+						}else{
+							alert('Gagal');
+						}
+					}
+				})
+			}
+		})
+	});
       });
    </script>
    <script>
@@ -244,15 +261,19 @@
       success: function (response) {
        var jarak = [];
        var nama = [];
+       var htmlmitra = '';
        for (let i = 0; i < response.data.length; i++) {
         ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng));
         if(ukur <= 1400){
-          alert('Ada gerai dalam radius anda')
+         htmlmitra +='<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'Math.round((((ukur /1000) + Number.EPSILON) * 100) / 100)' km</label> <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> 'response.data[i].nama'</h6> <p class="fs-13 mb-0">Sudah Buka</p></div></div>';
+         $('.alertmitra').html('<strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br>')
        }else{
-          jarak.push(ukur);
-          nama.push(response.data[i].nama);
+         $('.success-mitra').removeClass('d-none');
+         $('.form-mitra').removeClass('d-none');
+         $('.mitra').addClass('d-none');
        }
     }
+    $('.mitra').html(htmlmitra);
  }
 });
   }
