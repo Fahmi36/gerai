@@ -51,10 +51,8 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
+<script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
 <script type="text/javascript">
-   $(document).ready(function () {
-      getLocation();
-   });
    $(function () {
       $("#edit_data").submit(function (event) {
          var datas = new FormData($(this)[0]);
@@ -115,6 +113,7 @@
     var infowindow = new google.maps.InfoWindow({
        size: new google.maps.Size()
     });
+    var geoloccontrol = new klokantech.GeolocationControl(map, mapMaxZoom);
     //Untuk menampilkan tampilan awal maps
     function initialize() {
        geocoder = new google.maps.Geocoder();
@@ -122,7 +121,6 @@
         var mapOptions = {
          center: latlng,
          zoom: 15,
-         position: latlng,
          myLocation: true
       };
 
@@ -142,6 +140,7 @@
         marker = new google.maps.Marker({
          map: map,
          draggable: true,
+         position: latlng,
          anchorPoint: new google.maps.Point(0, -29)
       });
         
@@ -222,14 +221,6 @@
         infowindow.open(map, marker);
      });
     }
-
-    function getLocation() {
-       if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(showPosition, showError);
-      } else {
-         view.innerHTML = "Mohon maaf browser anda tidak mendukung Geolocation!";
-      }
-   }
 
    function showPosition(position) {
     $('#lat').val(position.coords.latitude);

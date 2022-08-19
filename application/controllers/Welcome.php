@@ -1,5 +1,8 @@
 <?php
+
+date_default_timezone_set('Asia/Jakarta');
 defined('BASEPATH') OR exit('No direct script access allowed');
+use ImageKit\ImageKit;
 
 class Welcome extends CI_Controller {
 	
@@ -188,9 +191,9 @@ class Welcome extends CI_Controller {
 		if ($upload){
 			$image = $this->upload->data();
 			$imageKit = new ImageKit(
-				"public_5Z8N6bQFJW+8PhIgWwseoSHWGZM=",
-				"private_/bNWUexZ+5GAUysbphlL5dKzcpA=",
-				"https://ik.imagekit.io/bjw2q837sq"
+				"public_jW32xkWgKyRPF/iDkRqRGReQlFc=",
+				"private_NATFuIxSElfVrHS/7qQMnelui+g=",
+				"https://ik.imagekit.io/dnmd9pfjcf"
 			);
 			$uploadFile = $imageKit->uploadFile([
 				'file' => base_url('assets/img/'.$image['file_name']),

@@ -189,7 +189,7 @@
                markermitra = new google.maps.Marker({
                   position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
                   map: map,
-                  icon:'https://ik.imagekit.io/bjw2q837sq/public/output-onlinepngtools__1__MgJqxbkj3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660753951517'
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
                });
                
                google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
