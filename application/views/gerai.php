@@ -333,7 +333,6 @@
       dataType: "json",
       success: function (response) {
       var jarak = [];
-      var nama = [];
       var htmlmitra = '';
       for (let i = 0; i < response.data.length; i++) {
          ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
@@ -427,7 +426,7 @@ function showPosition(position) {
 }, function(results, status) {
    var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
    if (status == google.maps.GeocoderStatus.OK) {
-    map.setCenter(latlng);
+    map.setCenter(results[0].geometry.location);
     if (marker) {
      marker.setMap(null);
      if (infowindow) infowindow.close();
