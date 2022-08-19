@@ -37,6 +37,7 @@
                         <th>Nomor Hendphone</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
@@ -61,6 +62,7 @@
                         <th>Nomor Hendphone</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
@@ -102,7 +104,7 @@
    function setujuMitra(id) {
       Swal.fire({
             title: 'Setujui',
-            text: "Jika data sudah sesuai makan tekan tombol ya",
+            text: "Jika data sudah sesuai maka tekan tombol ya",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -114,7 +116,85 @@
             $.ajax({
                type: "post",
                url: "/setujuiGerai",
-               data: {id:id},
+               data: {id:id,status:1},
+               dataType: "json",
+               success: function (response) {
+                  if (response.code== 200) {
+                        Swal.fire({
+                           icon: 'success',
+                           title: 'Horeee...',
+                           text: response.message,
+                        });
+                        setInterval(() => {
+                           window.location.reload();
+                        }, 3000);
+                     }else{
+                        Swal.fire({
+                           icon: 'error',
+                           title: 'Maaf...',
+                           text: response.message,
+                        });
+                     }
+               }
+            });
+         }
+      });
+    }
+    function nonaktifMitra(id) {
+      Swal.fire({
+            title: 'Non aktif Mitra',
+            text: "Jika data sudah sesuai maka tekan tombol ya",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+         }).then((result) => {
+            if (result.value) {
+            $.ajax({
+               type: "post",
+               url: "/setujuiGerai",
+               data: {id:id,status:2},
+               dataType: "json",
+               success: function (response) {
+                  if (response.code== 200) {
+                        Swal.fire({
+                           icon: 'success',
+                           title: 'Horeee...',
+                           text: response.message,
+                        });
+                        setInterval(() => {
+                           window.location.reload();
+                        }, 3000);
+                     }else{
+                        Swal.fire({
+                           icon: 'error',
+                           title: 'Maaf...',
+                           text: response.message,
+                        });
+                     }
+               }
+            });
+         }
+      });
+    }
+    function tolakMitra(id) {
+      Swal.fire({
+            title: 'Tolak Mitra',
+            text: "Jika data sudah sesuai maka tekan tombol ya",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+         }).then((result) => {
+            if (result.value) {
+            $.ajax({
+               type: "post",
+               url: "/setujuiGerai",
+               data: {id:id,status:3},
                dataType: "json",
                success: function (response) {
                   if (response.code== 200) {
