@@ -117,11 +117,11 @@
                data: {id:id},
                dataType: "json",
                success: function (response) {
-                  if (data.code== 200) {
+                  if (response.code== 200) {
                         Swal.fire({
                            icon: 'success',
                            title: 'Horeee...',
-                           text: data.message,
+                           text: response.message,
                         });
                         setInterval(() => {
                            window.location.reload();
@@ -130,7 +130,7 @@
                         Swal.fire({
                            icon: 'error',
                            title: 'Maaf...',
-                           text: data.message,
+                           text: response.message,
                         });
                      }
                }
