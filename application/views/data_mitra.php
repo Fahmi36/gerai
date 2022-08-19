@@ -76,22 +76,8 @@
       </div>
    </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
    $(document).ready(function() {
-      $('a.btn-gallery').on('click', function(event) {
-			event.preventDefault();
-
-			var gallery = $(this).attr('href');
-
-			$(gallery).magnificPopup({
-				delegate: 'a',
-				type:'image',
-				gallery: {
-					enabled: true
-				}
-			}).magnificPopup('open');
-		});
       GetdataAdminSelesai();
       GetdataAdminProses();
    });
