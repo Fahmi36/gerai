@@ -266,20 +266,20 @@
       var htmlmitra = '';
       for (let i = 0; i < response.data.length; i++) {
          ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
-         if(ukur <= 1400){
+         if(ukur <= 1.4){
             jarak.push(ukur);
-            htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+Math.round(((ukur + Number.EPSILON) * 100) / 100)+' km</label> <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].nama+'</h6> <p class="fs-13 mb-0">Sudah Buka</p></div></div>';
+            htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label> <h6 class="fs-14 fw-bold mb-0"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].nama+'</h6> <p class="fs-13 mb-0">Sudah Buka</p></div></div>';
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
-         }else{
-            jarak.length = 0;
          }
       }
       if (jarak.length == 0) {
+         jarak.length = 0;
          $('.success-mitra').removeClass('d-none');
          $('.form-mitra').removeClass('d-none');
          $('.card-information').removeClass('d-none');
          $('.mitra').addClass('d-none');
       }else{
+         jarak.length = 0;
          $('.card-information').removeClass('d-none');
          $('.mitra').removeClass('d-none');
          $('.form-mitra').addClass('d-none');
