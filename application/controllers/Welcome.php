@@ -235,7 +235,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nama_pemilik;
 			$row[] = $field->nama_toko;
 			$row[] = $field->nohp;
-			$row[] = "<a href='javascript:void(0);' onclick='openModal(\''".$field->foto_toko."'\')' class='text-primary text-underline'>Lihat Foto</a>";
+			$row[] = "<a href='javascript:void(0);' onclick='openModal('".$field->foto_toko."')' class='text-primary text-underline'>Lihat Foto</a>";
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
 			$row[] = $status;
