@@ -216,7 +216,6 @@ class Welcome extends CI_Controller {
 		$no = @$_POST['start'];
 		foreach ($list->result() as $field) {
 			$no++;
-			
 			if ($field->status == 1) {
 				$status = 'Mitra aktif';
 			}else if($field->status == 2){
@@ -236,7 +235,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nama_pemilik;
 			$row[] = $field->nama_toko;
 			$row[] = $field->nohp;
-			$row[] = "<a href='".$field->foto_toko."' target='_blank' class='btn-gallery text-primary text-underline'>Lihat Foto</a>";
+			$row[] = '<a href="javascript:void(0);" onclick="openModal(\''.$field->foto_toko.'\')" class="text-primary text-underline">Lihat Foto</a>';
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
 			$row[] = $status;

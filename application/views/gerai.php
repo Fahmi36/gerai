@@ -424,7 +424,7 @@
          setLatLong(location.latLng.lat(), location.latLng.lng());
          placeMarker(location.latLng);
          setGeoCoder(location.latLng);
-         circle(location.latLng.lat(), location.latLng.lng());
+         circle(location.latLng.lat(), location.latLng.lng(),"#9dfc49","0.2");
       });
       $.ajax({
          type: "get",
@@ -484,14 +484,14 @@
              var addrnya = place.formatted_address;
              marker.setVisible(true);
              setLatLong(place.geometry.location.lat(), place.geometry.location.lng(),namanya,addrnya);
-             circle(place.geometry.location.lat(), place.geometry.location.lng());
+             circle(place.geometry.location.lat(), place.geometry.location.lng(),"#9dfc49","0.2");
           });
         
         google.maps.event.addListener(marker, "dragend", function (e) {
          setLatLong(marker.getPosition().lat(), marker.getPosition().lng());
          placeMarker(marker.getPosition());
          setGeoCoder(marker.getPosition());
-         circle(marker.getPosition().lat(), marker.getPosition().lng());
+         circle(marker.getPosition().lat(), marker.getPosition().lng(),"#9dfc49","0.2");
       });
      }
      
@@ -541,7 +541,7 @@
                   setLatLong(position.coords.latitude, position.coords.longitude);
                   placeMarker(latlng);
                   setGeoCoder(latlng);
-                  circle(position.coords.latitude, position.coords.longitude);
+                  circle(position.coords.latitude, position.coords.longitude,"#9dfc49","0.2");
                   map.setCenter(latlng);
                   clearInterval(animationInterval);
                   secondChild.style['background-position'] = '-144px 0';
@@ -555,13 +555,13 @@
          controlDiv.index = 1;
          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
       }
-     function circle(lat,lng){
+     function circle(lat,lng,warna,tebal){
         var sunCircle = {
-            strokeColor: "#c3fc49",
-            strokeOpacity: 0.1,
+            strokeColor: warna,
+            strokeOpacity: tebal,
             strokeWeight: 1,
-            fillColor: "#c3fc49",
-            fillOpacity: 0.1,
+            fillColor: warna,
+            fillOpacity: tebal,
             map: map,
             center: lat,lng,
             radius: 1400 // in meters
@@ -572,7 +572,7 @@
          setLatLong(location.latLng.lat(), location.latLng.lng());
          placeMarker(location.latLng);
          setGeoCoder(location.latLng);
-         circle(location.latLng.lat(), location.latLng.lng());
+         circle(location.latLng.lat(), location.latLng.lng(),"#9dfc49","0.2");
       });
      $.ajax({
       type: "get",
@@ -684,7 +684,7 @@ function showPosition(position) {
      position: latlng
   });
 
-  circle(position.coords.latitude, position.coords.longitude);
+  circle(position.coords.latitude, position.coords.longitude,"#9dfc49","0.2");
   $('#alamat').val(results[0].formatted_address);
   var fx = results[0].formatted_address.split(',');
   $('hides').show();
@@ -693,7 +693,7 @@ function showPosition(position) {
      $('#lat').val(a.latLng.lat());
      $('#long').val(a.latLng.lng());
      $('#coordinate').val(a.latLng.lat()+','+a.latLng.lng());
-     circle(a.latLng.lat(), a.latLng.lng());
+     circle(a.latLng.lat(), a.latLng.lng(),"#9dfc49","0.2");
   });
   google.maps.event.addListener(marker, 'center_changed', function() {
    if (results[0].formatted_address) {
