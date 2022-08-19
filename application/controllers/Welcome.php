@@ -156,10 +156,13 @@ class Welcome extends CI_Controller {
 			if($this->form_validation->run()){
 				$cek = $this->db->get_where('mitra',array('id'=>$this->input->post('id')));
 				if($cek->num_rows() > 0){
+					$this->db->trans_commit();
 					$this->db->update('mitra',array(
 						'status'=>1,
 						'updated_at'=>date('Y-m-d H:i:s'),
 					),array('id'=>$this->input->post('id')));
+					$respone['code'] = 200;
+					$respone['message'] = 'Data Sudah di Terima';
 				}else{
 					$this->db->trans_rollback();
 					$respone['code'] = 400;
