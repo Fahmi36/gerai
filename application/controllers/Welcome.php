@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 	}
 	public function getMitra()
 	{
-		$this->db->select('koordinat,nama_pemilik');
+		$this->db->select('koordinat,nama_pemilik,alamat');
 		$this->db->from('mitra');
 		$this->db->where('status',1);
 		$query = $this->db->get();
@@ -43,6 +43,7 @@ class Welcome extends CI_Controller {
 				'koordinat'=>$key->koordinat,
 				'lat'=>floatval(@$exp[0]),
 				'lng'=>floatval(@$exp[1]),
+				'alamat'=>$key->alamat,
 			];
 		}
 		echo json_encode(['code'=>200,'data'=>$data]);
