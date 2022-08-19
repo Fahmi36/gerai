@@ -20,6 +20,7 @@
       <!-- feather Awesome -->
       <link rel="stylesheet" type="text/css" href="<?=base_url('/')?>assets/css/style.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="<?=base_url('/')?>assets/css/datatables.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
    </head>
    <body>
@@ -27,5 +28,6 @@
       <script type="text/javascript" src="<?=base_url('/')?>assets/js/bootstrap.bundle.min.js"></script> 
       <script type="text/javascript" src="<?=base_url('/')?>assets/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+      <script src="<?=base_url('/')?>assets/js/datatables.min.js"></script>
    </body>
 </html>

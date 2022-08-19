@@ -54,3 +54,5 @@ $route['getDataMitra'] = 'welcome/getMitra';
 $route['masukanDataStore'] = 'welcome/saveDataMitra';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['datamitra'] = 'welcome/data_mitra';

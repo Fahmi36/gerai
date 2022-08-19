@@ -118,4 +118,10 @@ class Welcome extends CI_Controller {
 		}
 		return $data;
 	}
+	public function data_mitra()
+	{
+		$data['title'] = 'Halaman Data Mitra - Teh Manis Jumbo';
+        $data['link_view'] = 'data_mitra';
+		$this->load->view('utama',$data);
+	}
 }
