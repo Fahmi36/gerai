@@ -178,18 +178,19 @@
          firstChild.style.backgroundColor = '#fff';
          firstChild.style.border = 'none';
          firstChild.style.outline = 'none';
-         firstChild.style.width = '28px';
-         firstChild.style.height = '28px';
+         firstChild.style.width = '40px';
+         firstChild.style.height = '40px';
          firstChild.style.borderRadius = '2px';
          firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
          firstChild.style.cursor = 'pointer';
          firstChild.style.marginRight = '10px';
          firstChild.style.padding = '0';
          firstChild.title = 'Your Location';
+         firstChild.type = 'button';
          controlDiv.appendChild(firstChild);
          
          var secondChild = document.createElement('div');
-         secondChild.style.margin = '5px';
+         secondChild.style.margin = '5px auto';
          secondChild.style.width = '18px';
          secondChild.style.height = '18px';
          secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-2x.png)';
