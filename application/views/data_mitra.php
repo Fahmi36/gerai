@@ -54,7 +54,7 @@
             </div>
             <div class="card-body">
                <div class="table-responsive">
-                  <table class="table dataTableProses table-striped table-bordered">
+                  <table class="table dataTableProses table-striped table-bordered" style="width:100%;">
                      <thead>
                         <th>No</th>
                         <th>Nama Pemohon</th>
