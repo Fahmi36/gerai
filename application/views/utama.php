@@ -28,6 +28,7 @@
       <script type="text/javascript" src="<?=base_url('/')?>assets/js/bootstrap.bundle.min.js"></script> 
       <script type="text/javascript" src="<?=base_url('/')?>assets/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="<?=base_url('/')?>assets/js/datatables.min.js"></script>
    </body>
 </html>
