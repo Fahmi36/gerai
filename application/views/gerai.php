@@ -95,7 +95,9 @@
                }, 300, function () {
                   $('form').addClass('appear').delay(1000);
                   $('.form-daftar').fadeIn(1000, function () {
-                  $('[type="text"]').attr('placeholder', 'Type Your Username!');
+                  $('#nama').attr('placeholder', 'Masukan Nama Pemilik!');
+                  $('#nama_booth').attr('placeholder', 'Masukan Nama Booth!');
+                  $('#no_hp').attr('placeholder', 'Masukan Nomor Handphone!');
                });
                   $(this).removeClass('cant-submit').val('Kirim Pengajuan');
                });
