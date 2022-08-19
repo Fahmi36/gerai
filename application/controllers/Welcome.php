@@ -210,6 +210,11 @@ class Welcome extends CI_Controller {
 		$no = @$_POST['start'];
 		foreach ($list->result() as $field) {
 			$no++;
+			if ($field->status == 1) {
+				$btn = "<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+			}else{
+				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+			}
 			$row = array();
 			$row[] = $no;
 			$row[] = $field->nama_pemilik;
@@ -217,7 +222,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
-			$row[] = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+			$row[] = $btn;
 			$data[] = $row;
 		}
 		$output = array(

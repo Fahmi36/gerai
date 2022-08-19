@@ -37,7 +37,6 @@
                         <th>Nomor Hendphone</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
@@ -62,7 +61,6 @@
                         <th>Nomor Hendphone</th>
                         <th>Alamat</th>
                         <th>Koordinat</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
