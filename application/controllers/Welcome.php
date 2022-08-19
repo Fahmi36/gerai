@@ -236,7 +236,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nama_pemilik;
 			$row[] = $field->nama_toko;
 			$row[] = $field->nohp;
-			$row[] = "<a href=".$field->foto_toko." target='_blank'>Lihat Foto</a>";
+			$row[] = "<a href='".$field->foto_toko."' target='_blank' class='btn-gallery text-primary text-underline'>Lihat Foto</a>";
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
 			$row[] = $status;
