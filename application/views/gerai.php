@@ -260,11 +260,11 @@
       cityCircle = new google.maps.Circle(sunCircle);
       cityCircle.bindTo('center', marker, 'position');
       google.maps.event.addListener(cityCircle, 'click', function(location) {
-      setLatLong(location.latLng.lat(), location.latLng.lng());
-      placeMarker(location.latLng);
-      setGeoCoder(location.latLng);
-      circle(location.latLng.lat(), location.latLng.lng());
-   });
+         setLatLong(location.latLng.lat(), location.latLng.lng());
+         placeMarker(location.latLng);
+         setGeoCoder(location.latLng);
+         circle(location.latLng.lat(), location.latLng.lng());
+      });
      $.ajax({
       type: "get",
       url: "/getDataMitra",

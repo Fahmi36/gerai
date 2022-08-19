@@ -208,4 +208,10 @@ class Welcome extends CI_Controller {
 		$data['link_view'] = 'data_mitra';
 		$this->load->view('utama',$data);
 	}
+	public function edit_data()
+	{
+		$data['title'] = 'Halaman Edit Data Mitra - Teh Manis Jumbo';
+        $data['link_view'] = 'edit_data';
+		$this->load->view('utama',$data);
+	}
 }
