@@ -58,4 +58,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['datamitra'] = 'welcome/data_mitra';
 $route['editdata_mitra/(:any)'] = 'welcome/edit_data';
-$route['editDataStore'] = 'welcome/editDataMitra';
+$route['editDataStore'] = 'welcome/updateDataMitra';
+$route['setujuiGerai'] = 'welcome/setujuiGerai';

@@ -11,17 +11,18 @@
       <label for="nama" class="block">Nama Pemohon <span
          class="text-danger">*</span>
       </label>
-      <input type="text" required="" class="form-control" id="nama" name="nama" placeholder="-">
+      <input type="text" required="" value="<?=@$data->nama_pemilik?>" class="form-control" id="nama" name="nama" placeholder="-">
+      <input type="hidden" required="" value="<?=@$data->id?>" class="form-control" id="id" name="id" placeholder="-">
 
       <label for="nama_booth" class="block">Nama Booth <span
          class="text-danger">*</span>
       </label>
-      <input type="text" required="" class="form-control" id="nama_booth" name="nama_booth" placeholder="-">
+      <input type="text" required="" class="form-control" value="<?=@$data->nama_toko?>" id="nama_booth" name="nama_booth" placeholder="-">
       
       <label for="no_hp" class="block">Nomor Handphone <span
          class="text-danger">*</span>
       </label>
-      <input type="text" required="" class="form-control" id="no_hp" name="no_hp" placeholder="-">
+      <input type="text" required="" class="form-control" id="no_hp" value="<?=@$data->nohp?>" name="no_hp" placeholder="-">
       
       <div class="input-group ">
          <span class="input-group-text bg-light"><i class="fa fa-map-marker text-danger fs-3"></i></span>
@@ -35,14 +36,14 @@
       <label for="alamat" class="block">Alamat Lengkap <span
          class="text-danger">*</span>
       </label>
-      <input type="text" required="" class="form-control" id="alamat" name="alamat" placeholder="-">
-      <input type="hidden" required="" class="form-control" id="coordinate" name="koordinat" placeholder="-">
+      <input type="text" required="" class="form-control" value="<?=@$data->alamat?>" id="alamat" name="alamat" placeholder="-">
+      <input type="hidden" required="" class="form-control" value="<?=@$data->koordinat?>" id="coordinate" name="koordinat" placeholder="-">
 
       <label for="foto_lokasi" class="block">Foto Lokasi <span
          class="text-danger">*</span>
       </label>
       <input type="file" required="" class="form-control" id="foto_lokasi" name="foto_lokasi" placeholder="-">
-
+      <input type="hidden" value="<?=@$data->foto_toko?>" name="old_foto">
       <div class="d-grid gap-2 col-6 mx-auto">
          <button class="cant-submit btn btn-warning rounded-5 mb-3 mt-4 btn-block" type="submit">Edit</button>
       </div>
@@ -89,7 +90,7 @@
                         });
                         setInterval(() => {
                            window.location.reload();
-                        }, 10000);
+                        }, 3000);
                      }else{
                         Swal.fire({
                            icon: 'error',
@@ -117,10 +118,11 @@
     //Untuk menampilkan tampilan awal maps
     function initialize() {
        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(-6.354906833002305, 106.84109466061315);//untuk setting map di awal 
+        var latlng = new google.maps.LatLng('<?=@$data->koordinat?>');//untuk setting map di awal 
         var mapOptions = {
          center: latlng,
          zoom: 15,
+         position: latlng,
          myLocation: true
       };
 
@@ -129,31 +131,7 @@
          setLatLong(location.latLng.lat(), location.latLng.lng());
          placeMarker(location.latLng);
          setGeoCoder(location.latLng);
-         circle(location.latLng.lat(), location.latLng.lng());
       });
-      $.ajax({
-         type: "get",
-         url: "/getDataMitra",
-         dataType: "json",
-         success: function (response) {
-            for (let i = 0; i < response.data.length; i++) {
-
-               markermitra = new google.maps.Marker({
-                  position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
-                  map: map,
-                  icon:'https://ik.imagekit.io/bjw2q837sq/public/output-onlinepngtools__1__MgJqxbkj3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660753951517'
-               });
-               
-               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
-                  return function() {
-                     infowindow.setContent(response.data[i].nama);
-                     infowindow.open(map, markermitra);
-                  }
-               })(markermitra, i));
-            }
-         }
-      });
-
         var input = document.getElementById('search_address');//Untuk memanggil id search autocomplete
         
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -188,68 +166,14 @@
              var addrnya = place.formatted_address;
              marker.setVisible(true);
              setLatLong(place.geometry.location.lat(), place.geometry.location.lng(),namanya,addrnya);
-             circle(place.geometry.location.lat(), place.geometry.location.lng());
           });
         
         google.maps.event.addListener(marker, "dragend", function (e) {
          setLatLong(marker.getPosition().lat(), marker.getPosition().lng());
          placeMarker(marker.getPosition());
          setGeoCoder(marker.getPosition());
-         circle(marker.getPosition().lat(), marker.getPosition().lng());
       });
      }
-     function circle(lat,lng){
-       var sunCircle = {
-          strokeColor: "#c3fc49",
-          strokeOpacity: 0.1,
-          strokeWeight: 1,
-          fillColor: "#c3fc49",
-          fillOpacity: 0.1,
-          map: map,
-          center: lat,lng,
-        radius: 1400 // in meters
-     };
-     cityCircle = new google.maps.Circle(sunCircle);
-     cityCircle.bindTo('center', marker, 'position');
-     google.maps.event.addListener(cityCircle, 'click', function(location) {
-      setLatLong(location.latLng.lat(), location.latLng.lng());
-      placeMarker(location.latLng);
-      setGeoCoder(location.latLng);
-      circle(location.latLng.lat(), location.latLng.lng());
-   });
-     $.ajax({
-      type: "get",
-      url: "/getDataMitra",
-      dataType: "json",
-      success: function (response) {
-         var jarak = [];
-         var nama = [];
-         var htmlmitra = '';
-         for (let i = 0; i < response.data.length; i++) {
-            ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
-            if(ukur <= 1.4){
-               jarak.push(ukur);
-               htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label> <h6 class="fs-14 fw-bold mb-2>'+response.data[i].nama+'</h6><i class="fa fa-map-marker text-danger"></i> <p class="class="fs-13 mb-2"">'+response.data[i].alamat+'</p><p class="fs-13 mb-0 text-success">Sudah Buka</p></div></div>';
-               $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
-            }
-         }
-         if (jarak.length == 0) {
-            jarak.length = 0;
-            $('.success-mitra').removeClass('d-none');
-            $('.form-mitra').removeClass('d-none');
-            $('.card-information').removeClass('d-none');
-            $('.mitra').addClass('d-none');
-         }else{
-            jarak.length = 0;
-            $('.card-information').removeClass('d-none');
-            $('.mitra').removeClass('d-none');
-            $('.form-mitra').addClass('d-none');
-            $('.success-mitra').addClass('d-none');
-            $('.mitra').html(htmlmitra);
-         }
-      }
-   });
-  }
 
   function placeMarker(location) {
    if ( marker ) {
@@ -328,7 +252,6 @@
           position: latlng
        });
 
-       circle(position.coords.latitude, position.coords.longitude);
        $('#alamat').val(results[0].formatted_address);
        var fx = results[0].formatted_address.split(',');
        $('hides').show();
@@ -337,7 +260,6 @@
           $('#lat').val(a.latLng.lat());
           $('#long').val(a.latLng.lng());
           $('#coordinate').val(a.latLng.lat()+','+a.latLng.lng());
-          circle(a.latLng.lat(), a.latLng.lng());
        });
        google.maps.event.addListener(marker, 'center_changed', function() {
          if (results[0].formatted_address) {

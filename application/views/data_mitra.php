@@ -101,4 +101,43 @@
          },
       });
    }
+   function setujuMitra(id) {
+      Swal.fire({
+            title: 'Setujui',
+            text: "Jika data sudah sesuai makan tekan tombol ya",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+         }).then((result) => {
+            if (result.value) {
+            $.ajax({
+               type: "post",
+               url: "/setujuiGerai",
+               data: {id:id},
+               dataType: "json",
+               success: function (response) {
+                  if (data.code== 200) {
+                        Swal.fire({
+                           icon: 'success',
+                           title: 'Horeee...',
+                           text: data.message,
+                        });
+                        setInterval(() => {
+                           window.location.reload();
+                        }, 3000);
+                     }else{
+                        Swal.fire({
+                           icon: 'error',
+                           title: 'Maaf...',
+                           text: data.message,
+                        });
+                     }
+               }
+            });
+         }
+      });
+    }
 </script>

@@ -137,7 +137,7 @@
                            });
                            setInterval(() => {
                               window.location.reload();
-                           }, 10000);
+                           }, 3000);
                         }else{
                            Swal.fire({
                               icon: 'error',

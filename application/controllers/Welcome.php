@@ -19,8 +19,8 @@ class Welcome extends CI_Controller {
 	* @see https://codeigniter.com/userguide3/general/urls.html
 	*/
 	var $coloumnorder = array(null,'nama_pemilik','nama_toko','nohp','alamat','koordinat',null);
-    var $coloumnsearch = array('lower(nama_pemilik)','lower(nama_toko)','lower(nohp)','lower(alamat)','lower(koordinat)');
-    var $order = array('created_at'=>'ASC');
+	var $coloumnsearch = array('lower(nama_pemilik)','lower(nama_toko)','lower(nohp)','lower(alamat)','lower(koordinat)');
+	var $order = array('created_at'=>'ASC');
 	function __construct() {
 		parent::__construct();
 		$this->load->library('form_validation');
@@ -78,12 +78,92 @@ class Welcome extends CI_Controller {
 						'alamat'=>$this->input->post('alamat'),
 						'koordinat'=>$this->input->post('koordinat'),
 						'status'=>0,
+						'foto_toko'=>$this->uploadFile('foto_lokasi'),
 						'created_at'=>date('Y-m-d H:i:s'),
 					));
 					
 					$this->db->trans_commit();
 					$respone['code'] = 200;
 					$respone['message'] = 'Data Anda akan Kami Review';
+				}
+			}else{
+				$this->db->trans_rollback();
+				$respone['code'] = 400;
+				$respone['message'] = 'Gagal';
+			}
+		}
+		echo json_encode($respone);
+	}
+	function updateDataMitra(){
+		$respone = array();
+		if (!$this->input->is_ajax_request()) {
+			$response = array(
+				'code'=>400,
+				'message'=> 'Tidak Boleh Akses'
+			);
+		}else{
+			$this->db->trans_start();
+			$this->form_validation->set_rules('nama','Nama Penanggung Jawab','required',array('required' => 'Mohon Isi Nama Penanggung Jawab'));
+			$this->form_validation->set_rules('no_hp','Nomor Telp','required',array('required' => 'Mohon Isi Nomor Telp Pemohon'));
+			$this->form_validation->set_rules('nama_booth','Nama Booth','required',array('required' => 'Mohon Isi Nama Booth'));
+			$this->form_validation->set_rules('alamat','Alamat Booth','required',array('required' => 'Mohon Isi Nama Booth'));
+			$this->form_validation->set_rules('koordinat','koordinat Booth','required',array('required' => 'Mohon Pilih Alamat Anda Di Maps'));
+			if($this->form_validation->run()){
+				$cek = $this->db->get_where('mitra',array('nohp'=>$this->input->post('no_hp'),'alamat'=>$this->input->post('alamat')));
+				if($cek->num_rows() > 0){
+					$this->db->trans_rollback();
+					$respone['code'] = 400;
+					$respone['message'] = 'Toko Anda Sedang Dalam Review';
+				}else{
+					$file = $this->uploadFile('foto_lokasi');
+					if($file == null){
+						$foto = $this->input->post('old_foto');
+					}else{
+						$foto = $file;
+					}
+					$this->db->update('mitra',array(
+						'nama_pemilik'=>$this->input->post('nama'),
+						'nama_toko'=>$this->input->post('nama_booth'),
+						'nohp'=>$this->input->post('no_hp'),
+						'alamat'=>$this->input->post('alamat'),
+						'koordinat'=>$this->input->post('koordinat'),
+						'foto_toko'=>$foto,
+						'created_at'=>date('Y-m-d H:i:s'),
+					),array('id'=>$this->input->post('id')));
+					
+					$this->db->trans_commit();
+					$respone['code'] = 200;
+					$respone['message'] = 'Data Anda akan Kami Review';
+				}
+			}else{
+				$this->db->trans_rollback();
+				$respone['code'] = 400;
+				$respone['message'] = 'Gagal';
+			}
+		}
+		echo json_encode($respone);
+	}
+	function setujuiGerai(){
+		$respone = array();
+		if (!$this->input->is_ajax_request()) {
+			$response = array(
+				'code'=>400,
+				'message'=> 'Tidak Boleh Akses'
+			);
+		}else{
+			$this->db->trans_start();
+			$this->form_validation->set_rules('id','id','required',array('required' => 'Mohon Isi id'));
+			if($this->form_validation->run()){
+				$cek = $this->db->get_where('mitra',array('nohp'=>$this->input->post('no_hp'),'alamat'=>$this->input->post('alamat')));
+				if($cek->num_rows() > 0){
+					$this->db->update('mitra',array(
+						'status'=>1,
+						'updated_at'=>date('Y-m-d H:i:s'),
+					),array('id'=>$this->input->post('id')));
+				}else{
+					$this->db->trans_rollback();
+					$respone['code'] = 400;
+					$respone['message'] = 'Tidak Ada Toko';
 				}
 			}else{
 				$this->db->trans_rollback();
@@ -137,7 +217,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
-			$row[] = "<a href=".$link." class='btn btn-sm btn-primary'>Edit</a>";
+			$row[] = "<a href='javascript:void(0);' onclick='setujuMitra(".$key->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href=".site_url('editdata_mitra/'.$key->id)." class='btn btn-sm btn-warning'>Edit</a>";
 			$data[] = $row;
 		}
 		$output = array(
@@ -200,7 +280,7 @@ class Welcome extends CI_Controller {
 		}else{
 			$this->db->where('status',0);
 		}
-        return $this->db->count_all_results();
+		return $this->db->count_all_results();
 	}
 	public function data_mitra()
 	{
@@ -210,8 +290,15 @@ class Welcome extends CI_Controller {
 	}
 	public function edit_data()
 	{
-		$data['title'] = 'Halaman Edit Data Mitra - Teh Manis Jumbo';
-        $data['link_view'] = 'edit_data';
-		$this->load->view('utama',$data);
+		$uri = $this->uri->segment(2);
+		$query = $this->db->get_where('mitra',array('id'=>$uri));
+		if($query->num_rows() > 0){
+			$data['data'] = $query->row();
+			$data['title'] = 'Halaman Edit Data Mitra - Teh Manis Jumbo';
+			$data['link_view'] = 'edit_data';
+			$this->load->view('utama',$data);
+		}else{
+			redirect('datamitra');
+		}
 	}
 }
