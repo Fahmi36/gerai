@@ -240,7 +240,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nama_pemilik;
 			$row[] = $field->nama_toko;
 			$row[] = $field->nohp;
-			$row[] = '';
+			$row[] = $foto;
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
 			$row[] = $status;
