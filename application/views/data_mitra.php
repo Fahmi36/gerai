@@ -79,11 +79,14 @@
 <div class="modal fade" id="modalImages" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title h4" id="exampleModalLgLabel">Foto Toko</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">×</span>
+            </button>
+         </div>
          <div class="modal-body">
             <img src="" width="100%" class="image-modal">
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
