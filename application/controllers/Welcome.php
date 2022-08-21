@@ -230,13 +230,12 @@ class Welcome extends CI_Controller {
 			}else{
 				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href='javascript:void(0);' onclick='tolakMitra(".$field->id.")' class='btn btn-sm btn-danger'>Tolak</a>&nbsp<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
 			}
-			
 			$row = array();
 			$row[] = $no;
 			$row[] = $field->nama_pemilik;
 			$row[] = $field->nama_toko;
 			$row[] = $field->nohp;
-			$row[] = '<a href="javascript:void(0);" onclick="openModal(\''.$foto_toko.'\')" class="text-primary text-underline">Lihat Foto</a>';
+			$row[] = '<a href="javascript:void(0);" onclick="openModal(\''.$field->foto_toko.'\')" class="text-primary text-underline">Lihat Foto</a>';
 			$row[] = $field->alamat;
 			$row[] = $field->koordinat;
 			$row[] = $status;
