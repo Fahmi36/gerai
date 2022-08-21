@@ -231,9 +231,9 @@ class Welcome extends CI_Controller {
 				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href='javascript:void(0);' onclick='tolakMitra(".$field->id.")' class='btn btn-sm btn-danger'>Tolak</a>&nbsp<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
 			}
 			if ($field->foto_toko == null) {
-				$foto = "<p class='text-danger'>Tidak Ada Foto</p>";
+				$foto = '<p class="text-danger">Tidak Ada Foto</p>';
 			}else{
-				$foto = "<a href='javascript:void(0);' data-toggle='modal' onclick='openModal(".$field->foto_toko.")' class='text-primary text-underline'>Lihat Foto</a>";
+				$foto = '<a href="javascript:void(0);" onclick="openModal(\''.$foto_toko.'\')" class="text-primary text-underline">Lihat Foto</a>';
 			}
 			$row = array();
 			$row[] = $no;
