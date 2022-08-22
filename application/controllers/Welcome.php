@@ -243,7 +243,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $foto;
 			$row[] = $field->alamat;
-			$row[] = '<a href="http://www.google.com/maps/place/'.$field->koordinat.'" target="_blank">';
+			$row[] = '<a href="http://www.google.com/maps/place/'.$field->koordinat.'" target="_blank">'.$field->koordinat.'</a>';
 			$row[] = $status;
 			$row[] = $btn;
 			$data[] = $row;
