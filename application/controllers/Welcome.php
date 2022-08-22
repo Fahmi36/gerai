@@ -226,9 +226,9 @@ class Welcome extends CI_Controller {
 				$status = 'Mitra belum verifikasi';
 			}
 			if ($field->status == 1) {
-				$btn = "<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>&nbsp<a href='javascript:void(0);' onclick='nonaktifMitra(".$field->id.")' class='btn btn-sm btn-primary'>Non Aktif</a>";
+				$btn = "<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>&nbsp<a href='javascript:void(0);' onclick='nonaktifMitra(".$field->id.")' class='btn btn-sm btn-outline-danger'>Non Aktif</a>";
 			}else{
-				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href='javascript:void(0);' onclick='tolakMitra(".$field->id.")' class='btn btn-sm btn-danger'>Tolak</a>&nbsp<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
+				$btn = "<a href='javascript:void(0);' onclick='setujuMitra(".$field->id.")' class='btn btn-sm btn-primary'>Terima</a>&nbsp <a href='javascript:void(0);' onclick='tolakMitra(".$field->id.")' class='btn btn-sm btn-outline-danger'>Tolak</a>&nbsp<a href=".site_url('editdata_mitra/'.$field->id)." class='btn btn-sm btn-warning'>Edit</a>";
 			}
 			if ($field->foto_toko == null) {
 				$foto = '<p class="text-danger">Tidak Ada Foto</p>';

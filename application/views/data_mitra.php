@@ -1,7 +1,9 @@
 <style type="text/css">
    ::selection { background-color: #f9c349; color: white; }
    ::-moz-selection { background-color: #f9c349; color: white; }
-
+   .table td:last-child { 
+      display: inline-flex;
+   }
 </style>
 
 <div class="container mt-3">
