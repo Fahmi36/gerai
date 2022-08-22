@@ -1,6 +1,6 @@
 <style type="text/css">
-   ::selection { background-color: #E13300; color: white; }
-   ::-moz-selection { background-color: #E13300; color: white; }
+   ::selection { background-color: #f9c349; color: white; }
+   ::-moz-selection { background-color: #f9c349; color: white; }
 
 </style>
 

@@ -235,6 +235,7 @@ class Welcome extends CI_Controller {
 			}else{
 				$foto = '<a href="javascript:void(0);" onclick="openModal(\''.$field->foto_toko.'\')" class="text-primary text-underline">Lihat Foto</a>';
 			}
+
 			$row = array();
 			$row[] = $no;
 			$row[] = $field->nama_pemilik;
@@ -242,7 +243,7 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $foto;
 			$row[] = $field->alamat;
-			$row[] = $field->koordinat;
+			$row[] = '<a href="http://www.google.com/maps/place/'.$field->koordinat.'" target="_blank">';
 			$row[] = $status;
 			$row[] = $btn;
 			$data[] = $row;
