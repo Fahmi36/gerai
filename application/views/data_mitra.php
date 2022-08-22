@@ -4,6 +4,12 @@
    .table td:last-child { 
       display: inline-flex;
    }
+   #mapsnya{
+      height:500px;
+   }
+   #mapsproses{
+      height:500px;
+   }
 </style>
 
 <div class="container mt-3">
@@ -26,6 +32,7 @@
    <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
          <div class="card card-information mt-3">
+            <div id="mapsnya"></div>
             <div class="card-header">
               <h4 class="fs-15 mb-0 text-center fw-bold">Daftar Data Mitra Sudah Verifikasi</h4>
             </div>
@@ -52,6 +59,7 @@
       </div>
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
          <div class="card card-information mt-3">
+            <div id="mapsproses"></div>
             <div class="card-header">
               <h4 class="fs-15 mb-0 text-center fw-bold">Daftar Data Mitra Belum Verifikasi</h4>
             </div>
@@ -90,6 +98,8 @@
       </div>
    </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIIfuR8-AJIrG2tScD4zW3Fmm4Ret3wX4&language=id&region=id&libraries=places,geometry" type="text/javascript"></script>
 <script>
    $(document).ready(function() {
       GetdataAdminSelesai();
@@ -237,5 +247,72 @@
             });
          }
       });
-    }
+   }
+   var infowindow = new google.maps.InfoWindow({
+      size: new google.maps.Size()
+   });
+   //Untuk menampilkan tampilan awal maps
+   function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(-6.354906833002305, 106.84109466061315);//untuk setting map di awal 
+      var mapOptions = {
+         center: latlng,
+         zoom: 12,
+         myLocation: true
+      };
+
+      map = new google.maps.Map(document.getElementById('mapsnya'), mapOptions);
+      map2 = new google.maps.Map(document.getElementById('mapsproses'), mapOptions);
+
+      $.ajax({
+         type: "get",
+         url: "getDataMitra",
+         dataType: "json",
+         success: function (response) {
+            for (let i = 0; i < response.data.length; i++) {
+               markermitra = new google.maps.Marker({
+                  position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
+                  map: map,
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
+               });
+
+               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
+                  return function() {
+                     infowindow.setContent(response.data[i].nama);
+                     infowindow.open(map, markermitra);
+                  }
+               })(markermitra, i));
+            }
+         }
+      });
+      $.ajax({
+         type: "get",
+         url: "getDataMitraProses",
+         dataType: "json",
+         success: function (response) {
+            for (let i = 0; i < response.data.length; i++) {
+
+               markermitra = new google.maps.Marker({
+                  position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
+                  map: map2,
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
+               });
+               
+               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
+                  return function() {
+                     infowindow.setContent(response.data[i].nama);
+                     infowindow.open(map2, markermitra);
+                  }
+               })(markermitra, i));
+            }
+         }
+      });
+      var infowindow = new google.maps.InfoWindow();
+        marker = new google.maps.Marker({
+         map: map,
+         draggable: true,
+         anchorPoint: new google.maps.Point(0, -29)
+      });
+   }
+   google.maps.event.addDomListener(window, "load", initialize);
 </script>

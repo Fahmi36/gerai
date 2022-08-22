@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['getDataMitra'] = 'welcome/getMitra';
+$route['getDataMitraProses'] = 'welcome/getMitraProses';
 $route['masukanDataStore'] = 'welcome/saveDataMitra';
 $route['list_data_mitra/(:any)'] = 'welcome/getDataTable';
 $route['404_override'] = '';

@@ -53,6 +53,25 @@ class Welcome extends CI_Controller {
 		}
 		echo json_encode(['code'=>200,'data'=>$data]);
 	}
+	public function getMitraProses()
+	{
+		$this->db->select('koordinat,nama_pemilik,alamat');
+		$this->db->from('mitra');
+		$this->db->where('status',0);
+		$query = $this->db->get();
+		$data = [];
+		foreach ($query->result() as $key) {
+			$exp = explode(',',$key->koordinat);
+			$data[] = [
+				'nama'=>ucwords($key->nama_pemilik),
+				'koordinat'=>$key->koordinat,
+				'lat'=>floatval(@$exp[0]),
+				'lng'=>floatval(@$exp[1]),
+				'alamat'=>$key->alamat,
+			];
+		}
+		echo json_encode(['code'=>200,'data'=>$data]);
+	}
 	function saveDataMitra(){
 		$respone = array();
 		if (!$this->input->is_ajax_request()) {

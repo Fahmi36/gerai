@@ -10,6 +10,13 @@ html,body{
 	margin-bottom: 20px;
 	
 }
+#mapsproses{
+	height:400px;
+	background: #FFF;padding: 10px;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 12%);
+	/*border:solid 1px #DDD;*/
+	margin-bottom: 20px;
+}
 .fs-13{
 	font-size: 13px;
 }
