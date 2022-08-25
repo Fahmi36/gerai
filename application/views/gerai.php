@@ -200,7 +200,7 @@
                   <div class="success-mitra text-center d-none">
                      <img src="<?=base_url('assets/img/success-2.png');?>" style="width: 45%;">
                      <h5 class="card-title">Horeee!!</h5>
-                     <p class="card-text">Tidak Ada Mitra Jumbo di sekitar Anda.<br>
+                     <!-- <p class="card-text">Tidak Ada Mitra Jumbo di sekitar Anda.<br> -->
                         Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami.
                      </p>
                   </div>
