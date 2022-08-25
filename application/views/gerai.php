@@ -593,20 +593,20 @@
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
          }
       }
-      if (jarak.length == 0) {
-         jarak.length = 0;
-         $('.success-mitra').removeClass('d-none');
-         $('.form-mitra').removeClass('d-none');
-         $('.card-information').removeClass('d-none');
-         $('.mitra').addClass('d-none');
-      }else{
+      // if (jarak.length == 0) {
+      //    jarak.length = 0;
+      //    $('.success-mitra').removeClass('d-none');
+      //    $('.form-mitra').removeClass('d-none');
+      //    $('.card-information').removeClass('d-none');
+      //    $('.mitra').addClass('d-none');
+      // }else{
          jarak.length = 0;
          $('.card-information').removeClass('d-none');
          $('.mitra').removeClass('d-none');
          $('.form-mitra').addClass('d-none');
          $('.success-mitra').addClass('d-none');
          $('.mitra').html(htmlmitra);
-      }
+      // }
  }
 });
   }
