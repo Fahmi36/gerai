@@ -605,6 +605,8 @@
          $('.mitra').removeClass('d-none');
          // $('.form-mitra').addClass('d-none');
          // $('.success-mitra').addClass('d-none');
+         $('.form-mitra').removeClass('d-none');
+         $('.success-mitra').removeClass('d-none');
          $('.mitra').html(htmlmitra);
       // }
  }
