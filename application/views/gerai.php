@@ -603,8 +603,8 @@
          jarak.length = 0;
          $('.card-information').removeClass('d-none');
          $('.mitra').removeClass('d-none');
-         $('.form-mitra').addClass('d-none');
-         $('.success-mitra').addClass('d-none');
+         // $('.form-mitra').addClass('d-none');
+         // $('.success-mitra').addClass('d-none');
          $('.mitra').html(htmlmitra);
       // }
  }
