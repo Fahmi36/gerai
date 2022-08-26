@@ -601,7 +601,6 @@
       //    $('.card-information').removeClass('d-none');
       //    $('.mitra').addClass('d-none');
       // }else{
-         jarak.length = 0;
          $('.card-information').removeClass('d-none');
          $('.mitra').removeClass('d-none');
          // $('.form-mitra').addClass('d-none');
@@ -616,6 +615,8 @@
       }else{
          $('.text-saran').html('Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, Klik Ajukan Mitra');
       }
+      
+      jarak.length = 0;
  }
 });
   }
