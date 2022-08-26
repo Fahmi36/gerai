@@ -295,7 +295,7 @@
                markermitra = new google.maps.Marker({
                   position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
                   map: map2,
-                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/help_N-PgWX2Z2.png'
                });
                
                google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {

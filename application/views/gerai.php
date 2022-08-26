@@ -201,6 +201,7 @@
                      <img src="<?=base_url('assets/img/success-2.png');?>" style="width: 45%;">
                      <h5 class="card-title">Horeee!!</h5>
                      <!-- <p class="card-text">Tidak Ada Mitra Jumbo di sekitar Anda.<br> -->
+                     <p class="text-saran">
                         Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami.
                      </p>
                   </div>
@@ -609,6 +610,12 @@
          $('.success-mitra').removeClass('d-none');
          $('.mitra').html(htmlmitra);
       // }
+      
+      if (jarak.length == 0) {
+         $('.text-saran').text('Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami');
+      }else{
+         $('.text-saran').text('Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, Klik Ajukan Mitra');
+      }
  }
 });
   }
