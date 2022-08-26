@@ -612,9 +612,9 @@
       // }
       
       if (jarak.length == 0) {
-         $('.text-saran').text('Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami');
+         $('.text-saran').html('Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami');
       }else{
-         $('.text-saran').text('Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, Klik Ajukan Mitra');
+         $('.text-saran').html('Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, Klik Ajukan Mitra');
       }
  }
 });
