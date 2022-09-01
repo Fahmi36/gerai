@@ -275,6 +275,18 @@
                   map: map,
                   icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
                });
+               markermitrap = new google.maps.Marker({
+                  position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
+                  map: map2,
+                  icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
+               });
+
+               google.maps.event.addListener(markermitrap, 'click', (function(markermitrap, i) {
+                  return function() {
+                     infowindow.setContent(response.data[i].nama);
+                     infowindow.open(map2, markermitrap);
+                  }
+               })(markermitrap, i));
 
                google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
                   return function() {
