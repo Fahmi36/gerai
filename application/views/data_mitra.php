@@ -251,6 +251,7 @@
    var infowindow = new google.maps.InfoWindow({
       size: new google.maps.Size()
    });
+   
    //Untuk menampilkan tampilan awal maps
    function initialize() {
       geocoder = new google.maps.Geocoder();
@@ -275,6 +276,14 @@
                   map: map,
                   icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-50,w-50/profilteh__sbDUb3dH.png'
                });
+
+               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
+                  return function() {
+                     infowindow.setContent(response.data[i].nama);
+                     infowindow.open(map, markermitra);
+                  }
+               })(markermitra, i));
+
                markermitrap = new google.maps.Marker({
                   position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
                   map: map2,
@@ -285,15 +294,9 @@
                   return function() {
                      infowindow.setContent(response.data[i].nama);
                      infowindow.open(map2, markermitrap);
+                     circle(response.data[i].lat,response.data[i].lng,markermitrap,map2);
                   }
                })(markermitrap, i));
-
-               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
-                  return function() {
-                     infowindow.setContent(response.data[i].nama);
-                     infowindow.open(map, markermitra);
-                  }
-               })(markermitra, i));
             }
          }
       });
@@ -304,18 +307,19 @@
          success: function (response) {
             for (let i = 0; i < response.data.length; i++) {
 
-               markermitra = new google.maps.Marker({
+               markermitrabp = new google.maps.Marker({
                   position: new google.maps.LatLng(response.data[i].lat,response.data[i].lng),
                   map: map2,
                   icon:'https://ik.imagekit.io/dnmd9pfjcf/tr:h-30,w-30/help_N-PgWX2Z2.png'
                });
                
-               google.maps.event.addListener(markermitra, 'click', (function(markermitra, i) {
+               google.maps.event.addListener(markermitrabp, 'click', (function(markermitrabp, i) {
                   return function() {
                      infowindow.setContent(response.data[i].nama);
-                     infowindow.open(map2, markermitra);
+                     infowindow.open(map2, markermitrabp);
+                     circle(response.data[i].lat,response.data[i].lng,markermitrabp,map2);
                   }
-               })(markermitra, i));
+               })(markermitrabp, i));
             }
          }
       });
@@ -325,6 +329,20 @@
          draggable: true,
          anchorPoint: new google.maps.Point(0, -29)
       });
+   }
+   function circle(lat,lng,markernya,mapnya){
+        var sunCircle = {
+            strokeColor: "#9dfc49",
+            strokeOpacity: 0.2,
+            strokeWeight: 1,
+            fillColor: "#9dfc49",
+            fillOpacity: 0.2,
+            map: mapnya,
+            center: lat,lng,
+            radius: 1400 // in meters
+         };
+      cityCircle = new google.maps.Circle(sunCircle);
+      cityCircle.bindTo('center', markernya, 'position');
    }
    google.maps.event.addDomListener(window, "load", initialize);
 </script>
