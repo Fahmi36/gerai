@@ -703,7 +703,6 @@ function showPosition(position) {
      position: latlng
   });
 
-  circle(position.coords.latitude, position.coords.longitude,"#9dfc49","0.2");
   $('#alamat').val(results[0].formatted_address);
   var fx = results[0].formatted_address.split(',');
   $('hides').show();
@@ -712,9 +711,7 @@ function showPosition(position) {
      $('#lat').val(a.latLng.lat());
      $('#long').val(a.latLng.lng());
      $('#coordinate').val(a.latLng.lat()+','+a.latLng.lng());
-     
-         getMitra(a.latLng.lat()+','+a.latLng.lng());
-     
+     getMitra(a.latLng.lat()+','+a.latLng.lng());
   });
   google.maps.event.addListener(marker, 'center_changed', function() {
    if (results[0].formatted_address) {
