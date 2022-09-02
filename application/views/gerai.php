@@ -591,7 +591,6 @@
          ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
          if(ukur <= 1.4){
             jarak.push(ukur);
-            $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
             htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label><h6 class="fs-14 fw-bold mb-2"><i class="fa fa-user-circle-o"></i> '+response.data[i].nama+'</h6><p class="fs-13 mb-2"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].alamat+' <a href="http://www.google.com/maps/place/'+response.data[i].koordinat+'" target="_blank">Lihat lokasi disini</a></p><p class="fs-13 mb-0 text-success">Sudah Buka</p></div></div>';
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
          }
@@ -610,7 +609,6 @@
          $('.form-mitra').removeClass('d-none');
          $('.success-mitra').removeClass('d-none');
          $('.mitra').html(htmlmitra);
-         $('.text-saran').addClass('d-none');
       // }
       $('#text-ajukan').on('click', function(event) {
          $('.form-mitra').removeClass('d-none');
@@ -619,8 +617,10 @@
       if (jarak.length == 0) {
          jarak.length = 0;
          $('.text-saran').text('Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami');
+         $('.alert-text').html('');
       }else{
-         $('.text-saran').text('Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, Klik Ajukan Mitra');
+         $('.text-saran').text('');
+         $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
       }
       
  }
