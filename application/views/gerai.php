@@ -593,8 +593,8 @@
             center: lat,lng,
             radius: 1400 // in meters
          };
-      cityCircle = new google.maps.Circle(sunCircle);
-      cityCircle.setMap(null);
+      cityCirclenull = new google.maps.Circle(sunCircle);
+      cityCirclenull.setMap(null);
 }
   function getMitra(lat,lng){
            $.ajax({
