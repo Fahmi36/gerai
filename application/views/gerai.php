@@ -570,6 +570,7 @@
             radius: 1400 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
+      cityCircle.setMap(null);
       cityCircle.bindTo('center', marker, 'position');
       google.maps.event.addListener(cityCircle, 'click', function(location) {
          setLatLong(location.latLng.lat(), location.latLng.lng());
