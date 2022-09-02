@@ -427,6 +427,7 @@
          setLatLong(location.latLng.lat(), location.latLng.lng());
          placeMarker(location.latLng);
          setGeoCoder(location.latLng);
+         circlenull(location.latLng.lat(), location.latLng.lng(),"#9dfc49","0.2");
          circle(location.latLng.lat(), location.latLng.lng(),"#9dfc49","0.2");
       });
       $.ajax({
@@ -487,6 +488,7 @@
              var addrnya = place.formatted_address;
              marker.setVisible(true);
              setLatLong(place.geometry.location.lat(), place.geometry.location.lng(),namanya,addrnya);
+             circlenull(place.geometry.location.lat(), place.geometry.location.lng(),"#9dfc49","0.2");
              circle(place.geometry.location.lat(), place.geometry.location.lng(),"#9dfc49","0.2");
           });
         
@@ -544,6 +546,7 @@
                   setLatLong(position.coords.latitude, position.coords.longitude);
                   placeMarker(latlng);
                   setGeoCoder(latlng);
+                  circlenull(position.coords.latitude, position.coords.longitude,"#9dfc49","0.2");
                   circle(position.coords.latitude, position.coords.longitude,"#9dfc49","0.2");
                   map.setCenter(latlng);
                   clearInterval(animationInterval);
@@ -570,7 +573,6 @@
             radius: 1400 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
-      cityCircle.setMap(null);
       cityCircle.bindTo('center', marker, 'position');
       google.maps.event.addListener(cityCircle, 'click', function(location) {
          setLatLong(location.latLng.lat(), location.latLng.lng());
@@ -580,6 +582,20 @@
       });
       getMitra(lat,lng);
   }
+  function circlenull(lat,lng,warna,tebal) { 
+   var sunCircle = {
+            strokeColor: warna,
+            strokeOpacity: tebal,
+            strokeWeight: 1,
+            fillColor: warna,
+            fillOpacity: tebal,
+            map: map,
+            center: lat,lng,
+            radius: 1400 // in meters
+         };
+      cityCircle = new google.maps.Circle(sunCircle);
+      cityCircle.setMap(null);
+}
   function getMitra(lat,lng){
            $.ajax({
       type: "get",
