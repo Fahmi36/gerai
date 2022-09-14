@@ -166,9 +166,39 @@
   color: #878787;
 }
 </style>
+<nav class="navbar navbar-expand-lg bg-white">
+   <div class="container">
+      <a class="navbar-brand" href="#">
+         <img src="<?=base_url('assets/img/logo.png');?>">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="nav-link" href="https://tehmanisjumboindonesia.com/">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link active" href="#">Daftar Mitra</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="https://tehmanisjumboindonesia.com/menu/">Menu</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="https://tehmanisjumboindonesia.com/tentang-kami/">Tentang Kami</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="https://tehmanisjumboindonesia.com/kemitraan/">Kemitraan</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="https://tehmanisjumboindonesia.com/kontak/">Kontak</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</nav>
 <div class="container mt-3">
-   <img src="<?=base_url('assets/img/logo.png');?>">
-   <hr>
    <div class="col-md-12 mt-3">
       <div class="row">
          <div class="col-md-8">
@@ -178,7 +208,7 @@
                Pengajuan Mitra Jumbo hanya akan diterima apabila pada radius <strong>zona hijau</strong> pada aplikasi yang tersedia dan tidak ada Mitra Jumbo lainnya.   
             </div>
             <div class="input-group ">
-               <span class="input-group-text bg-light"><i class="fa fa-map-marker text-danger fs-3"></i></span>
+               <span class="input-group-text bg-white"><i class="fa fa-map-marker text-danger fs-3"></i></span>
                <div class="form-floating">
                   <input type="text" class="form-control" id="search_address" placeholder="Masukan Nama Tempat">
                   <label for="search_address">Masukan Nama Tempat</label>
@@ -229,6 +259,22 @@
                            class="text-danger">*</span>
                         </label>
                         <input type="file" required="" class="form-control" id="foto_lokasi" name="foto_lokasi" placeholder="-">
+                        <hr>
+                        <p>Dan jawab pertanyaan-pertanyaan berikut ini...</p>
+                        <label for="quesion-1" class="block">1. Apa Anda sedang atau pernah mempunyai usaha? kalau iya, sebutkan nama atau jenis usahanya (misal kuliner, fashion, agen, kemitraan, dll). mohon sebutkan nama brandnya.</label>
+                        <textarea class="form-control mb-3" required="" name="quesion-1" id="quesion-1"></textarea>
+
+                        <label for="quesion-2" class="block">2. Apa tanggapan anda tentang untung, rugi dan resiko dalam bisnis?</label>
+                        <textarea class="form-control mb-3" required="" name="quesion-2" id="quesion-2"></textarea>
+
+                        <label for="quesion-3" class="block">3. Apakah anda sudah yakin dengan lokasi yang anda pilih? (indikatornya : Dekat atau berada dalam pusat keramaian, Lokasi usaha dilewati masyarakat perkampungan atau kendaraan)</label>
+                        <textarea class="form-control mb-3" required="" name="quesion-3" id="quesion-3"></textarea>
+
+                        <label for="quesion-4" class="block">4. Apakah lokasi toko dekat dengan TPU/TPS, Sungai, Jalur One Way, Tanjakan/turunan, Belokan, Tidak ada Tukang parkir? jika ada salah satu dari pernyataan diatas terkait lokasi anda, mengapa anda yakin dengan lokasi tersebut?</label>
+                        <textarea class="form-control mb-3" required="" name="quesion-4" id="quesion-4"></textarea>
+
+                        <label for="quesion-5" class="block">5. Apakah anda siap untuk mengikuti SOP dari Teh Manis jumbo? (terkait Renovasi toko, pembelian Bahan Baku, dan Racikan minuman)</label>
+                        <textarea class="form-control mb-3" required="" name="quesion-5" id="quesion-5"></textarea>
                      </div>
                      <br><br>
                      <input class="cant-submit btn btn-warning rounded-5 mb-3 mt-4" type="submit" value="Isi Formulir Pengajuan"/>
