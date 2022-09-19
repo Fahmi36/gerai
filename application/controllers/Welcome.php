@@ -149,6 +149,11 @@ class Welcome extends CI_Controller {
 						'nohp'=>$this->input->post('no_hp'),
 						'alamat'=>$this->input->post('alamat'),
 						'koordinat'=>$this->input->post('koordinat'),
+						'quesion1'=>$this->input->post('quesion-1'),
+						'quesion2'=>$this->input->post('quesion-2'),
+						'quesion3'=>$this->input->post('quesion-3'),
+						'quesion4'=>$this->input->post('quesion-4'),
+						'quesion5'=>$this->input->post('quesion-5'),
 						'foto_toko'=>$foto,
 						'created_at'=>date('Y-m-d H:i:s'),
 					),array('id'=>$this->input->post('id')));
@@ -262,6 +267,11 @@ class Welcome extends CI_Controller {
 			$row[] = $field->nohp;
 			$row[] = $foto;
 			$row[] = $field->alamat;
+			$row[] = $field->quesion1;
+			$row[] = $field->quesion2;
+			$row[] = $field->quesion3;
+			$row[] = $field->quesion4;
+			$row[] = $field->quesion5;
 			$row[] = '<a href="http://www.google.com/maps/place/'.$field->koordinat.'" target="_blank">'.$field->koordinat.'</a>';
 			$row[] = $status;
 			$row[] = $btn;
