@@ -616,7 +616,7 @@
             fillOpacity: tebal,
             map: map,
             center: lat,lng,
-            radius: 1355 // in meters
+            radius: 1350 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
       cityCircle.bindTo('center', marker, 'position');
@@ -637,7 +637,7 @@
             fillOpacity: tebal,
             map: map,
             center: lat,lng,
-            radius: 1355 // in meters
+            radius: 1350 // in meters
          };
       cityCirclenull = new google.maps.Circle(sunCircle);
       cityCirclenull.setMap(null);
