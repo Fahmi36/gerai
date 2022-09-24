@@ -685,7 +685,7 @@
          $('.text-saran').text('');
       //    $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
       // }
-         $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. untuk informasi masih lebih lanjut hubungi admin custumer service teh manis jumbo</p>');
+         $('.alert-text').html('<b><p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Untuk informasi lebih lanjut hubungi admin customer service teh manis jumbo</p></b>');
       }
       
  }
