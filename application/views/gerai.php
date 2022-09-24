@@ -658,32 +658,34 @@
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
          }
       }
-      // if (jarak.length == 0) {
-      //    jarak.length = 0;
-      //    $('.success-mitra').removeClass('d-none');
-      //    $('.form-mitra').removeClass('d-none');
-      //    $('.card-information').removeClass('d-none');
-      //    $('.mitra').addClass('d-none');
-      // }else{
+      if (jarak.length == 0) {
+         jarak.length = 0;
+         $('.success-mitra').removeClass('d-none');
+         $('.form-mitra').removeClass('d-none');
+         $('.card-information').removeClass('d-none');
+         $('.mitra').addClass('d-none');
+      }else{
          $('.card-information').removeClass('d-none');
          $('.mitra').removeClass('d-none');
-         // $('.form-mitra').addClass('d-none');
-         // $('.success-mitra').addClass('d-none');
-         $('.form-mitra').removeClass('d-none');
-         $('.success-mitra').removeClass('d-none');
+         $('.form-mitra').addClass('d-none');
+         $('.success-mitra').addClass('d-none');
+         // $('.form-mitra').removeClass('d-none');
+         // $('.success-mitra').removeClass('d-none');
          $('.mitra').html(htmlmitra);
-      // }
-      $('#text-ajukan').on('click', function(event) {
-         $('.form-mitra').removeClass('d-none');
-         $('.success-mitra').removeClass('d-none');
-      });
+      }
+      // $('#text-ajukan').on('click', function(event) {
+      //    $('.form-mitra').removeClass('d-none');
+      //    $('.success-mitra').removeClass('d-none');
+      // });
       if (jarak.length == 0) {
          jarak.length = 0;
          $('.text-saran').text('Kami sarankan Anda untuk memilih lokasi ini untuk menjadi mitra terbaik kami');
          $('.alert-text').html('');
       }else{
          $('.text-saran').text('');
-         $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
+      //    $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
+      // }
+         $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. untuk informasi masih lebih lanjut hubungi admin custumer service teh manis jumbo</p>');
       }
       
  }

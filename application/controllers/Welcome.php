@@ -34,6 +34,12 @@ class Welcome extends CI_Controller {
 		$data['link_view'] = 'gerai';
 		$this->load->view('utama',$data);
 	}
+	public function tambah_mitra()
+	{
+		$data['title'] = 'Halaman Tambah Gerai - Teh Manis Jumbo';
+		$data['link_view'] = 'tambah_mitra_admin';
+		$this->load->view('utama',$data);
+	}
 	public function getMitra()
 	{
 		$this->db->select('koordinat,nama_pemilik,alamat');
