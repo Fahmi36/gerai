@@ -616,7 +616,7 @@
             fillOpacity: tebal,
             map: map,
             center: lat,lng,
-            radius: 1360 // in meters
+            radius: 1355 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
       cityCircle.bindTo('center', marker, 'position');
@@ -637,7 +637,7 @@
             fillOpacity: tebal,
             map: map,
             center: lat,lng,
-            radius: 1360 // in meters
+            radius: 1355 // in meters
          };
       cityCirclenull = new google.maps.Circle(sunCircle);
       cityCirclenull.setMap(null);
@@ -652,7 +652,7 @@
       var htmlmitra = '';
       for (let i = 0; i < response.data.length; i++) {
          ukur = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(lat,lng), new google.maps.LatLng(response.data[i].lat,response.data[i].lng)) / 1000;
-         if(ukur <= 1.36){
+         if(ukur <= 1.35){
             jarak.push(ukur);
             htmlmitra += '<div class="card card-mitra"><div class="card-body"> <label class="badge text-bg-success" style="float:right;">'+ukur.toFixed(2)+' km</label><h6 class="fs-14 fw-bold mb-2"><i class="fa fa-user-circle-o"></i> '+response.data[i].nama+'</h6><p class="fs-13 mb-2"><i class="fa fa-map-marker text-danger"></i> '+response.data[i].alamat+' <a href="http://www.google.com/maps/place/'+response.data[i].koordinat+'" target="_blank">Lihat lokasi disini</a></p><p class="fs-13 mb-0 text-success">Sudah Buka</p></div></div>';
             $('.alertmitra').html('<div class="alert alert-danger mt-3 fs-14" role="alert"><strong>Mohon Maaf</strong> Sobat Jumbo, Mitra yang ada di sekitar Anda sudah melebihi batas yang kami tetapkan. Kami sarankan agar Anda memilih lokasi lain.<br></div>');
