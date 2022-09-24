@@ -683,7 +683,7 @@
          $('.alert-text').html('');
       }else{
          $('.text-saran').text('');
-         $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
+        //  $('.alert-text').html('<p class="text-danger fs-14">* Sekitar Anda sudah terdapat mitra teh manis jumbo, kami sarankan Anda memilih lokasi lain. Tetapi apabila Anda tetap ingin mengajukan mitra, <a href="#" id="text-ajukan">Klik Ajukan Mitra</a></p>');
       }
       
  }
