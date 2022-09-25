@@ -349,7 +349,7 @@
             fillOpacity: 0.2,
             map: mapnya,
             center: lat,lng,
-            radius: 1400 // in meters
+            radius: 1350 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
       cityCircle.bindTo('center', markernya, 'position');
