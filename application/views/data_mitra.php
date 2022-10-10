@@ -48,6 +48,11 @@
                         <th>Alamat</th>
                         <th>Koordinat</th>
                         <th>Status</th>
+                        <th>Jawaban 1</th>
+                        <th>Jawaban 2</th>
+                        <th>Jawaban 3</th>
+                        <th>Jawaban 4</th>
+                        <th>Jawaban 5</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
@@ -75,6 +80,11 @@
                         <th>Alamat</th>
                         <th>Koordinat</th>
                         <th>Status</th>
+                        <th>Jawaban 1</th>
+                        <th>Jawaban 2</th>
+                        <th>Jawaban 3</th>
+                        <th>Jawaban 4</th>
+                        <th>Jawaban 5</th>
                         <th>Aksi</th>
                      </thead>
                      <tbody id="contentNya">
@@ -339,7 +349,7 @@
             fillOpacity: 0.2,
             map: mapnya,
             center: lat,lng,
-            radius: 1400 // in meters
+            radius: 1350 // in meters
          };
       cityCircle = new google.maps.Circle(sunCircle);
       cityCircle.bindTo('center', markernya, 'position');
