@@ -57,6 +57,7 @@ $route['list_data_mitra/(:any)'] = 'welcome/getDataTable';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login'] = 'welcome/login';
 $route['datamitra'] = 'welcome/data_mitra';
 $route['editdata_mitra/(:any)'] = 'welcome/edit_data';
 $route['editDataStore'] = 'welcome/updateDataMitra';

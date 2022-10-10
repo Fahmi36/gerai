@@ -34,6 +34,62 @@ class Welcome extends CI_Controller {
 		$data['link_view'] = 'gerai';
 		$this->load->view('utama',$data);
 	}
+	public function login()
+	{
+		if ($this->session->userdata('id')!=null) {
+            redirect('datamitra');
+        }else{
+			$data['title'] = 'Halaman Masuk Admin - Teh Manis Jumbo';
+			$data['link_view'] = 'login';
+			$this->load->view('utama',$data);
+		}
+	}
+	function ActionLogin()
+	{
+		if (!$this->input->is_ajax_request()) {
+			$result = array('code'=>400,'message'=> 'No direct script access allowed');
+		}else{
+			$email = strtolower($this->input->post('email'));
+			$passwd = md5($this->input->post('password'));
+
+			if($email=="" || $passwd==""){
+				$result = array(
+					'code'=>400,
+					'message'=>'Email dan kata sandi tidak boleh kosong'
+				);
+			}else{
+				$this->db->select('users.id,users.email,users.nama as fullname');
+				$this->db->from('users');
+				$this->db->where('lower(email)', $email);
+				$this->db->where('password', ''.$passwd.'');
+				$this->db->where('users.active', TRUE);
+				$sql = $this->db->get();
+				if($sql->num_rows()>0){
+					$row = $sql->row();
+					$link = 'datamitra';
+					$result = array(
+						'code'=>200,
+						'id' => $row->id,
+						'email'=>$row->email,
+						'fullname'=>$row->fullname,
+						'link'=>$link,
+					);
+					$this->session->set_userdata($result);
+					$iduser = $row->id;
+
+					$datenow = date('Y-m-d H:i:s');
+					$updateactivity = $this->db->query("UPDATE users SET is_online='TRUE',last_login='$datenow' WHERE id='$iduser'");
+				}else{
+					$result = array(
+						'code'=>400,
+						'data'=>array(),
+						'message'=>'Email atau password salah',
+					);
+				}
+			}
+		}
+		echo json_encode($result);
+	}
 	public function getMitra()
 	{
 		$this->db->select('koordinat,nama_pemilik,alamat');
@@ -331,9 +387,13 @@ class Welcome extends CI_Controller {
 	}
 	public function data_mitra()
 	{
-		$data['title'] = 'Halaman Data Mitra - Teh Manis Jumbo';
-		$data['link_view'] = 'data_mitra';
-		$this->load->view('utama',$data);
+		if ($this->session->userdata('id')==null) {
+			redirect('/');
+		}else{
+			$data['title'] = 'Halaman Data Mitra - Teh Manis Jumbo';
+			$data['link_view'] = 'data_mitra';
+			$this->load->view('utama',$data);
+		}
 	}
 	public function edit_data()
 	{
